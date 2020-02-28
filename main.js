@@ -4,6 +4,7 @@ const path = require("path");
 
 // Importing modules.
 const moment = require("moment");
+const root = require("app-root-path").path;
 
 
 class Logger {
@@ -21,7 +22,7 @@ class Logger {
     // We initialize an object to hold references to
     // available options and their default values,
     // along with any overrides that were given.
-    this.options = { write: false, dir: path.join(__dirname, "logs"), ...options };
+    this.options = { write: false, dir: path.join(root, "logs"), ...options };
 
     // Before we continue, we must make sure that,
     // if we are writing logs into a file, the directory exists.
