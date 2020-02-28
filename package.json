@@ -7,6 +7,7 @@
   "author": "norviah",
   "license": "MIT",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "moment": "^2.24.0"
   }
 }
