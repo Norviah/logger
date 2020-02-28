@@ -1,6 +1,6 @@
 {
   "name": "@norviah/logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A very simple logging system for node.js.",
   "main": "main.js",
   "repository": "https://github.com/norviah/logger.git",
