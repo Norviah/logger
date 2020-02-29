@@ -1,5 +1,7 @@
 # Logger
 
+<br>
+
 ### About
 Logger is a very simple logging system for node.js, it uses [moment](https://momentjs.com) as a dependency in order to get the
 current time of when a log occurs. If wanted, you can also have Logger write logs into a directory, which defaults to `./logs/`,
@@ -13,7 +15,7 @@ const Logger = new logger({ /** options **/ });
 ```
 
 ### Usage
-In the previous example, once you have Logger initialized, you can start logging via the `.print` method:
+In the previous example, once you have Logger initialized, you can start logging via the `print` method:
 
 ```javascript
 Logger.print("Hello World");
@@ -40,6 +42,7 @@ Logger.print("Hello World!", "Greeting");
 ```
 
 ### Examples
+
 ```javascript
 
 const Logger = new Logger();
@@ -53,8 +56,9 @@ const Logger = new Logger({ write: true, dir: "./sample text/" );
 // create the directory if it doesn't exist.
 ```
 
-Logger also has a few methods available, for commonly used logging types, `Logger.log(message)`, `Logger.error(message)`,
-`Logger.debug(message)`, and `Logger.warn(message)`, with each having a title representing their names in all caps, for example:
+Logger also has a few methods available, for commonly used logging types, `Logger.log`, `Logger.error`, `Logger.debug`, and 
+`Logger.warn`, with each having a title representing their names in all caps, for example:
+
 ```javascript
 Logger.warn("Some warning");
 // => [DD-MM-YY - h:mm a] WARNING: Some warning
