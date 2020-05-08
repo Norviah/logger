@@ -1,7 +1,5 @@
 # Logger
 
-<br>
-
 ### About
 Logger is a very simple logging system for node.js, it uses [moment](https://momentjs.com) as a dependency in order to get the
 current time of when a log occurs. If wanted, you can also have Logger write logs into a directory, which defaults to `./logs/`,
