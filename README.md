@@ -1,68 +1,56 @@
-# Logger
+### Logger
 
-<br>
+`Logger` is a simple logging system for node.js/Typescript, it uses [moment](https://github.com/moment/moment/) as a dependency to get the current time of when a log occurs and [chalk](https://github.com/chalk/chalk) for pretty output. If wanted, `Logger` can also write logs into a file, the default path is the directory `logs` under the root directory, with each day having it's own file under the name `MM-DD-YY.txt`.
 
-### About
-Logger is a very simple logging system for node.js, it uses [moment](https://momentjs.com) as a dependency in order to get the
-current time of when a log occurs. If wanted, you can also have Logger write logs into a directory, which defaults to `./logs/`,
-with each day having its own file under the name of `MM-DD-YY.txt`.
+### Insatallation
 
-### Installation
-In order to install and use Logger, install with npm `npm install @norviah/logger`, then require and initialize it in your code:
-```javascript
-const logger = require("@norviah/logger");
-const Logger = new logger({ /** options **/ });
-```
+`npm install @norviah/logger`
+
+### Documentation
+
+Documentation can be viewed at the [documentation directory](https://github.com/Norviah/loger/tree/master/docs).
 
 ### Usage
-In the previous example, once you have Logger initialized, you can start logging via the `print` method:
-
-```javascript
-Logger.print("Hello World");
-// => [DD-MM-YY - h:mm a] Hello World
-```
-
-If you want Logger to also save logs into a file, you can initialize it with options, for example:
-
-```javascript
-// assuming that logger is imported as in the example above.
-const Logger = new logger({ write: true });
-```
-
-The `write` key determines if Logger should write logs into a file (`false` by default), there's also another key, `dir`. If the
-`write` key is `true` this key determines what directory should Logger write into (`./logs/` by default). When writing logs into
-a file, Logger will create a new file for the current day with the name `DD-MM-YY.txt`, if a file already exists it will append
-to that file.
-
-In addition, you can also provide a title for the message by doing: `Logger.log(message, title);`:
-
-```javascript
-Logger.print("Hello World!", "Greeting");
-// => [DD-MM-YY - h:mm a] Greeting: Hello World
-```
-
-### Examples
 
 ```javascript
 
-const Logger = new Logger();
+const { Logger } = require("@norviah/logger");
+const logger = new Logger({ /** options */ });
+
 // Logger will only print to the console.
+const logger = new Logger();
 
-const Logger = new Logger({ write: true });
-// Logger will also write logs into a text file within the directory "./logs".
+// Logger will print to the console and write
+// logs into the directory '$root/dir'.
+const logger = new Logger({ write: true });
 
-const Logger = new Logger({ write: true, dir: "./sample text/" );
-// Logger will write logs into the directory "./sample text/", Logger will
-// create the directory if it doesn't exist.
+// Logger will write logs into the user's Desktop.
+const logger = new Logger({ write: true, dir: "/Users/name/Desktop" });
+
 ```
 
-Logger also has a few methods available, for commonly used logging types, `Logger.log`, `Logger.error`, `Logger.debug`, and 
-`Logger.warn`, with each having a title representing their names in all caps, for example:
+To print, use the `Logger.print` method, which takes input as<br>
+`Logger.print(message: string, title?: string, colors: Colors)`
+
+`message` => The message to log.<br>
+`title` => (Optional) the message's title.<br>
+`colors` => (Optional) The colors for the log, defaults to `{ date: 'gray', title: 'gray', message: 'white' }`<br>
 
 ```javascript
-Logger.warn("Some warning");
-// => [DD-MM-YY - h:mm a] WARNING: Some warning
+logger.print("Hello World :)"); // => [ DD-MM-YY - h:mm a ] Hello World :)
+logger.print("World", "Hello"); // => [ DD-MM-YY - h:mm a ] Hello: World
+logger.print("Hello", colors = { title: 'red' }); // => [ DD-MM-YY - h:mm a ] [red]Hello[/red]
 ```
 
-### License
-[MIT](./LICENSE)
+`Logger` comes with a handful of methods for common logging types: `Logger.error`, `Logger.success`, `Logger.warn`, and `Logger.log`. Each having a title as their name in all caps, with the exception of `Logger.success` which is `OK`, for example:
+
+```javascript
+logger.error("Some error."); // => [ DD-MM-YY - h:mm a ] ERROR: Some error.
+```
+
+The available colors are the colors that are supported by chalk, which can be viewed [here](https://github.com/chalk/chalk/blob/55816cdd4d25a86cc35b18e1e578a5b164f71aee/index.d.ts#L56).
+
+The format for a log is `[ DD-MM-YY - h:mm a ] TITLE: MESSAGE`, so<br>
+`date` represents the color for the date,  `[ DD-MM-YY - h:mm a ]`,<br>
+`title` represents the color for the title,  `TITLE: `, and<br>
+`message` represents the color for the message,  `MESSAGE`<br>
