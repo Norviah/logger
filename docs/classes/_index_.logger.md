@@ -36,7 +36,7 @@ A simple logging system.
 
 \+ **new Logger**(`options`: [Options](../modules/_options_.md#options)): *[Logger](_index_.logger.md)*
 
-Defined in index.ts:22
+*Defined in [index.ts:22](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L22)*
 
 Initialize a new Logger instance.
 
@@ -54,7 +54,7 @@ Name | Type | Default | Description |
 
 • **regex**: *RegExp* = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
 
-Defined in index.ts:22
+*Defined in [index.ts:22](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L22)*
 
 Represents the regex used to match ANSI escape codes.
 
@@ -64,7 +64,7 @@ Represents the regex used to match ANSI escape codes.
 
 ▸ **error**(`message`: string): *void*
 
-Defined in index.ts:80
+*Defined in [index.ts:80](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L80)*
 
 A shortcut to output an error,
 the title is 'ERROR' and is the color red.
@@ -83,7 +83,7 @@ ___
 
 ▸ **log**(`message`: string): *void*
 
-Defined in index.ts:107
+*Defined in [index.ts:107](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L107)*
 
 A shortcut to output a message to simply log,
 the title is 'LOG' and is the color blue.
@@ -102,7 +102,7 @@ ___
 
 ▸ **print**(`message`: string, `title?`: undefined | string, `colors`: [Colors](../modules/_colors_.md#colors)): *void*
 
-Defined in index.ts:49
+*Defined in [index.ts:49](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L49)*
 
 Prints the given message to the console,
 and, if wanted, writes the log into a file.
@@ -123,7 +123,7 @@ ___
 
 ▸ **success**(`message`: string): *void*
 
-Defined in index.ts:89
+*Defined in [index.ts:89](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L89)*
 
 A shortcut to output a success,
 the title is 'OK' and is the color green.
@@ -142,7 +142,7 @@ ___
 
 ▸ **warn**(`message`: string): *void*
 
-Defined in index.ts:98
+*Defined in [index.ts:98](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L98)*
 
 A shortcut to output a warning,
 the title is 'WARN' and is the color yellow.
@@ -161,7 +161,7 @@ Name | Type | Description |
 
 ### ▪ **options**: *object*
 
-Defined in index.ts:17
+*Defined in [index.ts:17](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L17)*
 
 Optional options used for the logging system.
 
@@ -169,10 +169,10 @@ Optional options used for the logging system.
 
 • **dir**: *string* = join(path, 'logs')
 
-Defined in index.ts:17
+*Defined in [index.ts:17](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L17)*
 
 ###  write
 
 • **write**: *false* = false
 
-Defined in index.ts:17
+*Defined in [index.ts:17](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L17)*

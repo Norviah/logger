@@ -14,7 +14,7 @@
 
 Ƭ **Colors**: *object*
 
-Defined in colors.ts:9
+*Defined in [colors.ts:9](https://github.com/Norviah/logger/blob/0941dc6/src/colors.ts#L9)*
 
 Represents the colors for certain parts of a log,
 the colors that can be used are the colors

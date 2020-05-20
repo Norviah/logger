@@ -8,7 +8,7 @@
 
 ### Documentation
 
-Documentation can be viewed at the [documentation directory](https://github.com/Norviah/loger/tree/master/docs).
+Documentation can be viewed at the [documentation directory](https://github.com/Norviah/logger/tree/master/docs).
 
 ### Usage
 
