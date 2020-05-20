@@ -14,7 +14,7 @@
 
 Ƭ **Options**: *object*
 
-Defined in options.ts:1
+*Defined in [options.ts:1](https://github.com/Norviah/logger/blob/0941dc6/src/options.ts#L1)*
 
 #### Type declaration:
 
