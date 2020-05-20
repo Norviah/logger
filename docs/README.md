@@ -1,3 +1,7 @@
+[@norviah/logger](README.md) › [Globals](globals.md)
+
+# @norviah/logger
+
 ### Logger
 
 `Logger` is a simple logging system for node.js/Typescript, it uses [moment](https://github.com/moment/moment/) as a dependency to get the current time of when a log occurs and [chalk](https://github.com/chalk/chalk) for pretty output. If wanted, `Logger` can also write logs into a file, the default path is the directory `logs` under the root directory, with each day having it's own file under the name `MM-DD-YY.txt`.
