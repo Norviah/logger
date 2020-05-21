@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "clear;./node_modules/typescript/bin/tsc",
-    "docs": "/bin/rm -rf docs;./node_modules/typedoc/bin/typedoc --plugin typedoc-plugin-markdown; sed -i '' 's/# @norviah/logger/g; /^$/d' ./docs/README.md"
+    "docs": "/bin/rm -rf docs;./node_modules/typedoc/bin/typedoc --plugin typedoc-plugin-markdown; sed -i '' 's/# @norviah\\/logger//g; /^$/d' ./docs/README.md"
   },
   "repository": {
     "type": "git",
