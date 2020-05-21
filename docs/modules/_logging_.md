@@ -1,0 +1,29 @@
+[@norviah/logger](../README.md) › [Globals](../globals.md) › ["logging"](_logging_.md)
+
+# Module: "logging"
+
+## Index
+
+### Type aliases
+
+* [LoggingOptions](_logging_.md#loggingoptions)
+
+## Type aliases
+
+###  LoggingOptions
+
+Ƭ **LoggingOptions**: *object*
+
+Defined in logging.ts:6
+
+Options to use when logging.
+
+#### Type declaration:
+
+* **colors**? : *undefined | object*
+
+* **name**? : *undefined | string*
+
+* **subDir**? : *undefined | string*
+
+* **title**? : *undefined | string*
