@@ -16,7 +16,7 @@
 
 ▸ **format**(`message`: string, `color`: typeof Color | undefined, `defaults`: typeof Color): *string*
 
-*Defined in [util.ts:91](https://github.com/norviah/logger/blob/095e0ad/src/util.ts#L91)*
+*Defined in [util.ts:91](https://github.com/norviah/logger/blob/8869634/src/util.ts#L91)*
 
 Applies the given color to the message, if Chalk doesn't
 support the color, apply the default color instead.
@@ -39,7 +39,7 @@ ___
 
 ▸ **loop**(`base`: string, `sub`: string): *string*
 
-*Defined in [util.ts:10](https://github.com/norviah/logger/blob/095e0ad/src/util.ts#L10)*
+*Defined in [util.ts:10](https://github.com/norviah/logger/blob/8869634/src/util.ts#L10)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **mkdir**(`base`: string, `sub`: string): *void*
 
-*Defined in [util.ts:32](https://github.com/norviah/logger/blob/095e0ad/src/util.ts#L32)*
+*Defined in [util.ts:32](https://github.com/norviah/logger/blob/8869634/src/util.ts#L32)*
 
 Creates the sub-directories in the base directory recursively,
 if it doesn't exist. Meaning that if 'mkdir('Users/name/Desktop', 'base/sub/sub')'

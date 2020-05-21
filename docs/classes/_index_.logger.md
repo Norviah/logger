@@ -38,7 +38,7 @@ A simple logging system.
 
 \+ **new Logger**(`options`: [Options](../modules/_options_.md#options)): *[Logger](_index_.logger.md)*
 
-*Defined in [index.ts:23](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L23)*
+*Defined in [index.ts:23](https://github.com/norviah/logger/blob/8869634/src/index.ts#L23)*
 
 Initialize a new Logger instance.
 
@@ -65,7 +65,7 @@ Name | Type | Default | Description |
 
 • **regex**: *RegExp* = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
 
-*Defined in [index.ts:23](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L23)*
+*Defined in [index.ts:23](https://github.com/norviah/logger/blob/8869634/src/index.ts#L23)*
 
 Represents a regex used that matches ANSI escape codes.
 
@@ -75,7 +75,7 @@ Represents a regex used that matches ANSI escape codes.
 
 ▸ **color**(`color`: typeof Color, `message`: string): *void*
 
-*Defined in [index.ts:196](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L196)*
+*Defined in [index.ts:196](https://github.com/norviah/logger/blob/8869634/src/index.ts#L196)*
 
 Applies the given color to the message and prints it into the console.
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **colorize**(`color`: typeof Color, `message`: string): *string*
 
-*Defined in [index.ts:187](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L187)*
+*Defined in [index.ts:187](https://github.com/norviah/logger/blob/8869634/src/index.ts#L187)*
 
 Applies the given color to the message and returns it.
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **error**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:131](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L131)*
+*Defined in [index.ts:131](https://github.com/norviah/logger/blob/8869634/src/index.ts#L131)*
 
 A shortcut to output an error,
 the title is 'ERROR' and is the color red.
@@ -145,7 +145,7 @@ ___
 
 ▸ **log**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:173](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L173)*
+*Defined in [index.ts:173](https://github.com/norviah/logger/blob/8869634/src/index.ts#L173)*
 
 A shortcut to output a logging message,
 the title is 'LOG' and is the color blue.
@@ -170,7 +170,7 @@ ___
 
 ▸ **print**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:83](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L83)*
+*Defined in [index.ts:83](https://github.com/norviah/logger/blob/8869634/src/index.ts#L83)*
 
 Prints the message to the console with the given colors applied to the message.
 
@@ -216,7 +216,7 @@ ___
 
 ▸ **success**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:145](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L145)*
+*Defined in [index.ts:145](https://github.com/norviah/logger/blob/8869634/src/index.ts#L145)*
 
 A shortcut to output a success,
 the title is 'OK' and is the color green.
@@ -241,7 +241,7 @@ ___
 
 ▸ **warn**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:159](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L159)*
+*Defined in [index.ts:159](https://github.com/norviah/logger/blob/8869634/src/index.ts#L159)*
 
 A shortcut to output a warning,
 the title is 'WARN' and is the color yellow.
@@ -266,7 +266,7 @@ Name | Type | Default | Description |
 
 ### ▪ **options**: *object*
 
-*Defined in [index.ts:18](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L18)*
+*Defined in [index.ts:18](https://github.com/norviah/logger/blob/8869634/src/index.ts#L18)*
 
 Options for the logging system.
 
@@ -274,10 +274,10 @@ Options for the logging system.
 
 • **dir**: *string* = join(path, 'logs')
 
-*Defined in [index.ts:18](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L18)*
+*Defined in [index.ts:18](https://github.com/norviah/logger/blob/8869634/src/index.ts#L18)*
 
 ###  write
 
 • **write**: *false* = false
 
-*Defined in [index.ts:18](https://github.com/norviah/logger/blob/095e0ad/src/index.ts#L18)*
+*Defined in [index.ts:18](https://github.com/norviah/logger/blob/8869634/src/index.ts#L18)*
