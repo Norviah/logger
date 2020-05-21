@@ -6,6 +6,7 @@
 
 ### Modules
 
-* ["colors"](modules/_colors_.md)
 * ["index"](modules/_index_.md)
+* ["logging"](modules/_logging_.md)
 * ["options"](modules/_options_.md)
+* ["util"](modules/_util_.md)

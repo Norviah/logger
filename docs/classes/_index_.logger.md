@@ -20,6 +20,8 @@ A simple logging system.
 
 ### Methods
 
+* [color](_index_.logger.md#color)
+* [colorize](_index_.logger.md#colorize)
 * [error](_index_.logger.md#error)
 * [log](_index_.logger.md#log)
 * [print](_index_.logger.md#print)
@@ -36,15 +38,24 @@ A simple logging system.
 
 \+ **new Logger**(`options`: [Options](../modules/_options_.md#options)): *[Logger](_index_.logger.md)*
 
-*Defined in [index.ts:22](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L22)*
+*Defined in [index.ts:23](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L23)*
 
 Initialize a new Logger instance.
+
+**`examples`** 
+```typescript
+const { Logger } = require("@norviah/logger");
+
+const logger = new Logger();                                            // Initialize a new instance with default values.
+const logger = new Logger({ write: true });                             // Logger will write logs into the sub-directory 'logs' in the project's root directory.
+const logger = new Logger({ write: true, dir: '/Users/name/Desktop' }); // Logger will write logs into the Desktop.
+```
 
 **Parameters:**
 
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
-`options` | [Options](../modules/_options_.md#options) | {} | Options for the logging system.  |
+`options` | [Options](../modules/_options_.md#options) | { write: false, dir: join(path, 'logs') } | Options for the logging system. |
 
 **Returns:** *[Logger](_index_.logger.md)*
 
@@ -54,26 +65,77 @@ Name | Type | Default | Description |
 
 • **regex**: *RegExp* = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
 
-*Defined in [index.ts:22](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L22)*
+*Defined in [index.ts:23](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L23)*
 
-Represents the regex used to match ANSI escape codes.
+Represents a regex used that matches ANSI escape codes.
 
 ## Methods
 
-###  error
+###  color
 
-▸ **error**(`message`: string): *void*
+▸ **color**(`color`: typeof Color, `message`: string): *void*
 
-*Defined in [index.ts:80](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L80)*
+*Defined in [index.ts:196](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L196)*
 
-A shortcut to output an error,
-the title is 'ERROR' and is the color red.
+Applies the given color to the message and prints it into the console.
 
 **Parameters:**
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`message` | string | The message to print.  |
+`color` | typeof Color | The color to apply to the message. |
+`message` | string | The message.  |
+
+**Returns:** *void*
+
+___
+
+###  colorize
+
+▸ **colorize**(`color`: typeof Color, `message`: string): *string*
+
+*Defined in [index.ts:187](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L187)*
+
+Applies the given color to the message and returns it.
+
+**`examples`** 
+```typescript
+logger.colorize('yellow', 'hello world :)'); // => (yellow)hello world :)(/yellow)
+```
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`color` | typeof Color | The color to apply to the message. |
+`message` | string | The message. |
+
+**Returns:** *string*
+
+The given message with the given color.
+
+___
+
+###  error
+
+▸ **error**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
+
+*Defined in [index.ts:131](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L131)*
+
+A shortcut to output an error,
+the title is 'ERROR' and is the color red.
+
+**`examples`** 
+```typescript
+logger.error('message'); // => [ DD-MM-YYYY ] (red)ERROR(/red): message
+```
+
+**Parameters:**
+
+Name | Type | Default | Description |
+------ | ------ | ------ | ------ |
+`message` | string | - | The message to print. |
+`options` | [LoggingOptions](../modules/_logging_.md#loggingoptions) | { title: 'ERROR', colors: { title: 'red' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -81,18 +143,24 @@ ___
 
 ###  log
 
-▸ **log**(`message`: string): *void*
+▸ **log**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:107](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L107)*
+*Defined in [index.ts:173](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L173)*
 
-A shortcut to output a message to simply log,
+A shortcut to output a logging message,
 the title is 'LOG' and is the color blue.
+
+**`examples`** 
+```typescript
+logger.log('message'); // => [ DD-MM-YYYY ] (blue)LOG(/blue): message
+```
 
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`message` | string | The message to print.  |
+Name | Type | Default | Description |
+------ | ------ | ------ | ------ |
+`message` | string | - | The message to print. |
+`options` | [LoggingOptions](../modules/_logging_.md#loggingoptions) | { title: 'LOG', colors: { title: 'blue' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -100,20 +168,45 @@ ___
 
 ###  print
 
-▸ **print**(`message`: string, `title?`: undefined | string, `colors`: [Colors](../modules/_colors_.md#colors)): *void*
+▸ **print**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:49](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L49)*
+*Defined in [index.ts:83](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L83)*
 
-Prints the given message to the console,
-and, if wanted, writes the log into a file.
+Prints the message to the console with the given colors applied to the message.
+
+**`examples`** 
+```typescript
+logger.print(':)');                            // => [ DD-MM-YYYY h:mm a ] :)
+logger.print('world', { title: 'hello' });     // => [ DD-MM-YYYY h:mm a ] hello: world
+logger.print(':)', { subDir: 'sub' });         // This log will be written into the sub-directory 'sub' in the base directory.
+logger.print(':)', { subDir: 'sub/sub'}); // This log will be written into the sub-directory 'sub/sub' in the base directory. The sub-directories are created if it doesn't exist.
+logger.print(':)', { name: 'smile' });         // This log will be written under the name of 'smile.txt' in the base directory. If a name isn't given, it will be saved as 'DD-MM-YYYY.txt'.
+
+// With the format of a log being,
+// [ DD-MM-YYYY h:mm a ] title: message
+// date represents '[ DD-MM-YYYY h:mm a ]',
+// title represents 'title:', and
+// message represents 'message'
+
+// By default, the colors when logging are
+// date: gray,
+// title (if one is given): gray, and
+// message: white
+
+// The supported colors are the colors supported by chalk, which can be viewed here:
+// https://github.com/chalk/chalk/blob/55816cdd4d25a86cc35b18e1e578a5b164f71aee/index.d.ts#L56.
+
+logger.print(':)', { title: 'title' });                                                // => (gray)[ DD-MM-YYYY h:mm a ](/gray) (gray)title:(/gray) (white):)(/white)
+logger.print(':)', { colors: { message: 'red' } });                                    // => (gray)[ DD-MM-YYYY h:mm a ](/gray) (red):)(/red)
+logger.print('world', { title: 'hello', colors: { title: 'blue', message: 'blue' } }); // => (gray)[ DD-MM-YYYY h:mm a ](/gray) (blue)hello:(/blue) (blue)world(/blue)
+```
 
 **Parameters:**
 
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `message` | string | - | The message to print. |
-`title?` | undefined &#124; string | - | The optional title for the message. |
-`colors` | [Colors](../modules/_colors_.md#colors) | {} | Represents colors used to print the date, title, and message.  |
+`options` | [LoggingOptions](../modules/_logging_.md#loggingoptions) | { title: '', colors: { date: 'gray', title: 'gray', message: 'white' } } | Options for the log. |
 
 **Returns:** *void*
 
@@ -121,18 +214,24 @@ ___
 
 ###  success
 
-▸ **success**(`message`: string): *void*
+▸ **success**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:89](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L89)*
+*Defined in [index.ts:145](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L145)*
 
 A shortcut to output a success,
 the title is 'OK' and is the color green.
 
+**`examples`** 
+```typescript
+logger.success('message'); // => [ DD-MM-YYYY ] (green)OK(/green): message
+```
+
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`message` | string | The message to print.  |
+Name | Type | Default | Description |
+------ | ------ | ------ | ------ |
+`message` | string | - | The message to print. |
+`options` | [LoggingOptions](../modules/_logging_.md#loggingoptions) | { title: 'OK', colors: { title: 'green' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -140,18 +239,24 @@ ___
 
 ###  warn
 
-▸ **warn**(`message`: string): *void*
+▸ **warn**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:98](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L98)*
+*Defined in [index.ts:159](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L159)*
 
 A shortcut to output a warning,
 the title is 'WARN' and is the color yellow.
 
+**`examples`** 
+```typescript
+logger.warn('message'); // => [ DD-MM-YYYY ] (yellow)WARN(/yellow): message
+```
+
 **Parameters:**
 
-Name | Type | Description |
------- | ------ | ------ |
-`message` | string | The message to print.  |
+Name | Type | Default | Description |
+------ | ------ | ------ | ------ |
+`message` | string | - | The message to print. |
+`options` | [LoggingOptions](../modules/_logging_.md#loggingoptions) | { title: 'WARN', colors: { title: 'yellow' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -161,18 +266,18 @@ Name | Type | Description |
 
 ### ▪ **options**: *object*
 
-*Defined in [index.ts:17](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L17)*
+*Defined in [index.ts:18](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L18)*
 
-Optional options used for the logging system.
+Options for the logging system.
 
 ###  dir
 
 • **dir**: *string* = join(path, 'logs')
 
-*Defined in [index.ts:17](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L17)*
+*Defined in [index.ts:18](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L18)*
 
 ###  write
 
 • **write**: *false* = false
 
-*Defined in [index.ts:17](https://github.com/Norviah/logger/blob/0941dc6/src/index.ts#L17)*
+*Defined in [index.ts:18](https://github.com/Norviah/logger/blob/976ce7e/src/index.ts#L18)*
