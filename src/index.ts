@@ -57,7 +57,7 @@ class Logger {
    * logger.print(':)');                            // => [ DD-MM-YYYY h:mm a ] :)
    * logger.print('world', { title: 'hello' });     // => [ DD-MM-YYYY h:mm a ] hello: world
    * logger.print(':)', { subDir: 'sub' });         // This log will be written into the sub-directory 'sub' in the base directory.
-   * logger.print(':)', { subDir: 'sub/sub'}); // This log will be written into the sub-directory 'sub/sub' in the base directory. The sub-directories are created if it doesn't exist.
+   * logger.print(':)', { subDir: 'sub/sub'});      // This log will be written into the sub-directory 'sub/sub' in the base directory. The sub-directories are created if it doesn't exist.
    * logger.print(':)', { name: 'smile' });         // This log will be written under the name of 'smile.txt' in the base directory. If a name isn't given, it will be saved as 'DD-MM-YYYY.txt'.
    *
    *
