@@ -18,7 +18,7 @@ class Logger {
   private options: Options = { write: false, dir: join(path, 'logs') };
 
   /**
-   * Represents a regex used that matches ANSI escape codes.
+   * Matches ANSI codes, used to get rid of colors from a log.
    */
   private regex: RegExp = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
 
@@ -54,16 +54,16 @@ class Logger {
    * @param options Options for the log.
    * @examples
    * ```typescript
-   * logger.print(':)');                            // => [ DD-MM-YYYY h:mm a ] :)
-   * logger.print('world', { title: 'hello' });     // => [ DD-MM-YYYY h:mm a ] hello: world
+   * logger.print(':)');                            // => [ MM-DD-YYYY h:mm a ] :)
+   * logger.print('world', { title: 'hello' });     // => [ MM-DD-YYYY h:mm a ] hello: world
    * logger.print(':)', { subDir: 'sub' });         // This log will be written into the sub-directory 'sub' in the base directory.
    * logger.print(':)', { subDir: 'sub/sub'});      // This log will be written into the sub-directory 'sub/sub' in the base directory. The sub-directories are created if it doesn't exist.
-   * logger.print(':)', { name: 'smile' });         // This log will be written under the name of 'smile.txt' in the base directory. If a name isn't given, it will be saved as 'DD-MM-YYYY.txt'.
+   * logger.print(':)', { name: 'smile' });         // This log will be written under the name of 'smile.txt' in the base directory. If a name isn't given, it will be saved as 'MM-DD-YYYY.txt'.
    *
    *
    * // With the format of a log being,
-   * // [ DD-MM-YYYY h:mm a ] title: message
-   * // date represents '[ DD-MM-YYYY h:mm a ]',
+   * // [ MM-DD-YYYY h:mm a ] title: message
+   * // date represents '[ MM-DD-YYYY h:mm a ]',
    * // title represents 'title:', and
    * // message represents 'message'
    *
@@ -75,9 +75,9 @@ class Logger {
    * // The supported colors are the colors supported by chalk, which can be viewed here:
    * // https://github.com/chalk/chalk/blob/55816cdd4d25a86cc35b18e1e578a5b164f71aee/index.d.ts#L56.
    *
-   * logger.print(':)', { title: 'title' });                                                // => (gray)[ DD-MM-YYYY h:mm a ](/gray) (gray)title:(/gray) (white):)(/white)
-   * logger.print(':)', { colors: { message: 'red' } });                                    // => (gray)[ DD-MM-YYYY h:mm a ](/gray) (red):)(/red)
-   * logger.print('world', { title: 'hello', colors: { title: 'blue', message: 'blue' } }); // => (gray)[ DD-MM-YYYY h:mm a ](/gray) (blue)hello:(/blue) (blue)world(/blue)
+   * logger.print(':)', { title: 'title' });                                                // => (gray)[ MM-DD-YYYY h:mm a ](/gray) (gray)title:(/gray) (white):)(/white)
+   * logger.print(':)', { colors: { message: 'red' } });                                    // => (gray)[ MM-DD-YYYY h:mm a ](/gray) (red):)(/red)
+   * logger.print('world', { title: 'hello', colors: { title: 'blue', message: 'blue' } }); // => (gray)[ MM-DD-YYYY h:mm a ](/gray) (blue)hello:(/blue) (blue)world(/blue)
    * ```
    */
   public print(message: string, options: LoggingOptions = { title: '', colors: { date: 'gray', title: 'gray', message: 'white' } }): void {
@@ -125,7 +125,7 @@ class Logger {
    * @param options Options for logging.
    * @examples
    * ```typescript
-   * logger.error('message'); // => [ DD-MM-YYYY ] (red)ERROR(/red): message
+   * logger.error('message'); // => [ MM-DD-YYYY ] (red)ERROR(/red): message
    * ```
    */
   public error(message: string, options: LoggingOptions = { title: 'ERROR', colors: { title: 'red' } }): void {
@@ -139,7 +139,7 @@ class Logger {
    * @param options Options for logging.
    * @examples
    * ```typescript
-   * logger.success('message'); // => [ DD-MM-YYYY ] (green)OK(/green): message
+   * logger.success('message'); // => [ MM-DD-YYYY ] (green)OK(/green): message
    * ```
    */
   public success(message: string, options: LoggingOptions = { title: 'OK', colors: { title: 'green' } }): void {
@@ -153,7 +153,7 @@ class Logger {
    * @param options Options for logging.
    * @examples
    * ```typescript
-   * logger.warn('message'); // => [ DD-MM-YYYY ] (yellow)WARN(/yellow): message
+   * logger.warn('message'); // => [ MM-DD-YYYY ] (yellow)WARN(/yellow): message
    * ```
    */
   public warn(message: string, options: LoggingOptions = { title: 'WARN', colors: { title: 'yellow' } }): void {
@@ -167,7 +167,7 @@ class Logger {
    * @param options Options for logging.
    * @examples
    * ```typescript
-   * logger.log('message'); // => [ DD-MM-YYYY ] (blue)LOG(/blue): message
+   * logger.log('message'); // => [ MM-DD-YYYY ] (blue)LOG(/blue): message
    * ```
    */
   public log(message: string, options: LoggingOptions = { title: 'LOG', colors: { title: 'blue' } }): void {
@@ -192,6 +192,10 @@ class Logger {
    * Applies the given color to the message and prints it into the console.
    * @param color   The color to apply to the message.
    * @param message The message.
+   * @examples
+   * ```typescript
+   * logger.color('blue', 'hello world :)'); // => (blue)hello world :)(/blue)
+   * ```
    */
   public color(color: typeof Color, message: string): void {
     console.log(this.colorize(color, message));
