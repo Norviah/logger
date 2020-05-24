@@ -64,4 +64,4 @@ logger.log('**world**', { title: '__hello__' }); // => [ MM-DD-YYYY h:mm a ] (un
 
 ```
 
-For more documentation, visit the [documentation](https://github.com/Norviah/logger/blob/master/docs) directory, specifically [here](https://github.com/Norviah/sheets/blob/master/docs/classes/_index_.logger.md).
+For more documentation, visit the [documentation](https://github.com/Norviah/logger/blob/master/docs) directory, specifically [here](https://github.com/Norviah/logger/blob/master/docs/classes/_index_.logger.md).
