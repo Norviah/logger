@@ -14,13 +14,13 @@
 
 Ƭ **LoggingOptions**: *object*
 
-*Defined in [logging.ts:6](https://github.com/norviah/logger/blob/0522667/src/logging.ts#L6)*
+*Defined in [logging.ts:6](https://github.com/norviah/logger/blob/6a7cff1/src/logging.ts#L6)*
 
 Options to use when logging.
 
 #### Type declaration:
 
-* **colors**? : *undefined | object*
+* **colors**? : *[Colors](_colors_.md#colors)*
 
 * **name**? : *undefined | string*
 

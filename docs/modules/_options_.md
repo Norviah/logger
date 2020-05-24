@@ -14,7 +14,7 @@
 
 Ƭ **Options**: *object*
 
-*Defined in [options.ts:4](https://github.com/norviah/logger/blob/0522667/src/options.ts#L4)*
+*Defined in [options.ts:4](https://github.com/norviah/logger/blob/6a7cff1/src/options.ts#L4)*
 
 Options to use when initializing a new instance.
 
