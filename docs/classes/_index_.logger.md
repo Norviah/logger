@@ -39,7 +39,7 @@ A simple logging system.
 
 \+ **new Logger**(`__namedParameters`: object): *[Logger](_index_.logger.md)*
 
-*Defined in [index.ts:29](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L29)*
+*Defined in [index.ts:29](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L29)*
 
 Initialize a new Logger instance.
 
@@ -71,7 +71,7 @@ Name | Type | Default |
 
 • **ansi**: *RegExp* = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
 
-*Defined in [index.ts:24](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L24)*
+*Defined in [index.ts:24](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L24)*
 
 Matches ANSI codes, used to get rid of colors from a log.
 
@@ -81,7 +81,7 @@ ___
 
 • **options**: *[Options](../modules/_options_.md#options)*
 
-*Defined in [index.ts:19](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L19)*
+*Defined in [index.ts:19](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L19)*
 
 Options for the logging system.
 
@@ -91,7 +91,7 @@ Options for the logging system.
 
 ▸ **color**(`color`: typeof Color, `message`: string): *void*
 
-*Defined in [index.ts:227](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L227)*
+*Defined in [index.ts:227](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L227)*
 
 Applies the given color to the message and prints it into the console.
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **colorize**(`color`: typeof Color, `message`: string): *string*
 
-*Defined in [index.ts:214](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L214)*
+*Defined in [index.ts:214](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L214)*
 
 Applies the given color to the message and returns it.
 
@@ -141,7 +141,7 @@ ___
 
 ▸ **error**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:158](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L158)*
+*Defined in [index.ts:158](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L158)*
 
 A shortcut to output an error,
 the title is 'ERROR' and is the color red.
@@ -166,7 +166,7 @@ ___
 
 ▸ **log**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:200](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L200)*
+*Defined in [index.ts:200](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L200)*
 
 A shortcut to output a logging message,
 the title is 'LOG' and is the color blue.
@@ -191,7 +191,7 @@ ___
 
 ▸ **print**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:107](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L107)*
+*Defined in [index.ts:107](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L107)*
 
 Prints the message to the console with the given colors applied to the message.
 
@@ -255,7 +255,7 @@ ___
 
 ▸ **success**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:172](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L172)*
+*Defined in [index.ts:172](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L172)*
 
 A shortcut to output a success,
 the title is 'OK' and is the color green.
@@ -280,7 +280,7 @@ ___
 
 ▸ **warn**(`message`: string, `options`: [LoggingOptions](../modules/_logging_.md#loggingoptions)): *void*
 
-*Defined in [index.ts:186](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L186)*
+*Defined in [index.ts:186](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L186)*
 
 A shortcut to output a warning,
 the title is 'WARN' and is the color yellow.
@@ -305,7 +305,7 @@ Name | Type | Default | Description |
 
 ### ▪ **colors**: *object*
 
-*Defined in [index.ts:29](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L29)*
+*Defined in [index.ts:29](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L29)*
 
 Default colors used when logging.
 
@@ -313,16 +313,16 @@ Default colors used when logging.
 
 • **date**: *"gray"* = "gray"
 
-*Defined in [index.ts:29](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L29)*
+*Defined in [index.ts:29](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L29)*
 
 ###  message
 
 • **message**: *"white"* = "white"
 
-*Defined in [index.ts:29](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L29)*
+*Defined in [index.ts:29](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L29)*
 
 ###  title
 
 • **title**: *"gray"* = "gray"
 
-*Defined in [index.ts:29](https://github.com/norviah/logger/blob/6a7cff1/src/index.ts#L29)*
+*Defined in [index.ts:29](https://github.com/norviah/logger/blob/190f4f0/src/index.ts#L29)*
