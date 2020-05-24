@@ -14,4 +14,4 @@
 
 • **markdown**: *Map‹RegExp, Chalk.Chalk›* = new Map()
 
-*Defined in [markdown.ts:4](https://github.com/norviah/logger/blob/190f4f0/src/markdown.ts#L4)*
+*Defined in [markdown.ts:4](https://github.com/norviah/logger/blob/d822869/src/markdown.ts#L4)*
