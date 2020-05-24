@@ -28,6 +28,16 @@ logger = new Logger({ write: true, dir: '/Users/norviah/Desktop' });
 
 logger.print('message', { title: 'title' }); // => [ MM-DD-YYYY h:mm a ] title: message
 
+// Logs will be saved as 'MM-DD-YYYY.txt' under the directory given
+// at initialization, or, the sub-directory 'logs' under the project's root
+// if a directory isn't given. If wanted, you can set the name for the
+// log and/or save it in a sub-directory of the base directory for logs.
+// Assuming 'write' is true and 'dir' is set to the user's Desktop, if we have:
+
+logger.print('message', { name: 'log', subDir: 'base/sub' });
+
+ // This log will be saved as '/Users/norviah/Desktop/base/sub/log.txt'
+
 // With the format of a log being,
 // [ MM-DD-YYYY h:mm a ] title: message
 // date represents '[ MM-DD-YYYY h:mm a ]',

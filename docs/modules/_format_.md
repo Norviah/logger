@@ -14,7 +14,7 @@
 
 ▸ **format**(`message`: string, `color`: typeof Color | undefined): *string*
 
-*Defined in [format.ts:10](https://github.com/norviah/logger/blob/190f4f0/src/format.ts#L10)*
+*Defined in [format.ts:10](https://github.com/norviah/logger/blob/d822869/src/format.ts#L10)*
 
 Applies the given color and markdown syntax to the message.
 

@@ -14,7 +14,7 @@
 
 Ƭ **Colors**: *object*
 
-*Defined in [colors.ts:8](https://github.com/norviah/logger/blob/190f4f0/src/colors.ts#L8)*
+*Defined in [colors.ts:8](https://github.com/norviah/logger/blob/d822869/src/colors.ts#L8)*
 
 Represents the colors used for certain parts of the log.
 The supported colors are the colors supported by Chalk, which can be viewed here:

@@ -14,7 +14,7 @@
 
 Ƭ **LoggingOptions**: *object*
 
-*Defined in [logging.ts:6](https://github.com/norviah/logger/blob/190f4f0/src/logging.ts#L6)*
+*Defined in [logging.ts:6](https://github.com/norviah/logger/blob/d822869/src/logging.ts#L6)*
 
 Options to use when logging.
 
