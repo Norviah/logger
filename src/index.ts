@@ -1,12 +1,13 @@
-import { existsSync, mkdirSync, appendFileSync } from 'fs';
-import { join } from 'path';
 import { path } from 'app-root-path';
-import { Options } from './options';
-import { LoggingOptions } from './logging';
-import { format, mkdir } from './util';
-import { Color } from 'chalk';
-
+import Chalk from 'chalk';
+import { existsSync, mkdirSync, appendFileSync } from 'fs';
 import moment from 'moment';
+import { join } from 'path';
+
+import { Colors } from './colors';
+import { LoggingOptions } from './logging';
+import { Options } from './options';
+import { format } from './format';
 
 /**
  * A simple logging system.
@@ -15,36 +16,41 @@ class Logger {
   /**
    * Options for the logging system.
    */
-  private options: Options = { write: false, dir: join(path, 'logs') };
+  private options: Options;
 
   /**
    * Matches ANSI codes, used to get rid of colors from a log.
    */
-  private regex: RegExp = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
+  private ansi: RegExp = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
+
+  /**
+   * Default colors used when logging.
+   */
+  private colors: Colors = { date: 'gray', title: 'gray', message: 'white' };
 
   /**
    * Initialize a new Logger instance.
    * @param options Options for the logging system.
    * @examples
    * ```typescript
+   *
    * const { Logger } = require("@norviah/logger");
    *
    * const logger = new Logger();                                            // Initialize a new instance with default values.
-   * const logger = new Logger({ write: true });                             // Logger will write logs into the sub-directory 'logs' in the project's root directory.
-   * const logger = new Logger({ write: true, dir: '/Users/name/Desktop' }); // Logger will write logs into the Desktop.
+   * const logger = new Logger({ write: true });                             // Logs will be written into the sub-directory 'logs' in the project's root directory.
+   * const logger = new Logger({ write: true, dir: '/Users/name/Desktop' }); // Logs will be written into the Desktop.
+   *
    * ```
    */
-  constructor(options: Options = { write: false, dir: join(path, 'logs') }) {
+  constructor({ write = false, dir = join(path, 'logs') }: Options = {}) {
     // Set the options to hold reference to the
     // default values and any given overrides.
-    this.options = { ...this.options, ...options };
-
-    const { write, dir } = this.options;
+    this.options = { write, dir };
 
     // If the user wants Logger to write files,
     // make sure that the wanted directory exists.
-    if (write && !existsSync(dir as string)) {
-      mkdirSync(dir as string);
+    if (write && !existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
     }
   }
 
@@ -54,6 +60,7 @@ class Logger {
    * @param options Options for the log.
    * @examples
    * ```typescript
+   *
    * logger.print(':)');                            // => [ MM-DD-YYYY h:mm a ] :)
    * logger.print('world', { title: 'hello' });     // => [ MM-DD-YYYY h:mm a ] hello: world
    * logger.print(':)', { subDir: 'sub' });         // This log will be written into the sub-directory 'sub' in the base directory.
@@ -78,20 +85,40 @@ class Logger {
    * logger.print(':)', { title: 'title' });                                                // => (gray)[ MM-DD-YYYY h:mm a ](/gray) (gray)title:(/gray) (white):)(/white)
    * logger.print(':)', { colors: { message: 'red' } });                                    // => (gray)[ MM-DD-YYYY h:mm a ](/gray) (red):)(/red)
    * logger.print('world', { title: 'hello', colors: { title: 'blue', message: 'blue' } }); // => (gray)[ MM-DD-YYYY h:mm a ](/gray) (blue)hello:(/blue) (blue)world(/blue)
+   *
+   * // Using Chalk, Logger also supports a few markdown syntax:
+   * // '**' for bold text.
+   * // '~~' for strikethrough text.
+   * // '*'  for italic text.
+   * // '_'  for underline text.
+   * // '!'  for inverse colors.
+   * // If you wrap a phrase around one or more of these, the types
+   * // it represents will be applied to the phrase. For example,
+   *
+   * logger.print('**__*hello world*__**');
+   *
+   * // Will print 'hello world' in bold, underline, and in italics. Markdown syntax is also
+   * // available for the title as well as other the other available methods.
+   *
+   * logger.log('**world**', { title: '__hello__' }); // => [ MM-DD-YYYY h:mm a ] (underline)hello(/underline): (bold)world(/bold)
+   *
    * ```
    */
-  public print(message: string, options: LoggingOptions = { title: '', colors: { date: 'gray', title: 'gray', message: 'white' } }): void {
+  public print(message: string, options: LoggingOptions = { colors: this.colors }): void {
+    // Get the default values for colors in addition to any possible overrides.
+    options.colors = { ...this.colors, ...options.colors };
+
     // Initialize a new string representing the current date and time.
-    const now = moment().format('MM-DD-YYYY h:mm a');
+    const now = moment().format('MM-DD-YYYY - h:mm a');
 
     // Apply the given color to the date.
-    const date = format(`[ ${now} ]`, options.colors?.date, 'gray');
+    const date = format(`[ ${now} ]`, options.colors.date);
 
     // Apply the given color to the title.
-    const title = options.title ? format(`${options.title}: `, options.colors?.title, 'gray') : '';
+    const title = options.title ? format(`${options.title}: `, options.colors.title) : '';
 
     // Apply the given color to the message.
-    message = format(message, options.colors?.message, 'white');
+    message = format(message, options.colors.message);
 
     // Format the message.
     message = `${date} ${title}${message}`;
@@ -105,7 +132,7 @@ class Logger {
     // If a sub-directory is given, make sure that
     // each sub-directory exists within the base directory.
     if (options.subDir) {
-      mkdir(this.options.dir as string, options.subDir);
+      mkdirSync(join(this.options.dir as string, options.subDir), { recursive: true });
     }
 
     // Initialize a reference to the directory to write to,
@@ -115,7 +142,7 @@ class Logger {
     // If a name isn't given, default to the date in the format 'MM-DD-YYYY'.
     const name = options.name ?? now.split(' ')[0];
 
-    appendFileSync(join(directory, `${name}.txt`), `${message.replace(this.regex, '')}\n`);
+    appendFileSync(join(directory, `${name}.txt`), `${message.replace(this.ansi, '')}\n`);
   }
 
   /**
@@ -129,7 +156,7 @@ class Logger {
    * ```
    */
   public error(message: string, options: LoggingOptions = { title: 'ERROR', colors: { title: 'red' } }): void {
-    this.print(message, { title: 'ERROR', colors: { title: 'red' }, ...options });
+    this.print(message, { title: 'ERROR', ...options, colors: { title: 'red', ...options.colors } });
   }
 
   /**
@@ -143,7 +170,7 @@ class Logger {
    * ```
    */
   public success(message: string, options: LoggingOptions = { title: 'OK', colors: { title: 'green' } }): void {
-    this.print(message, { title: 'OK', colors: { title: 'green' }, ...options });
+    this.print(message, { title: 'OK', ...options, colors: { title: 'green', ...options.colors } });
   }
 
   /**
@@ -157,7 +184,7 @@ class Logger {
    * ```
    */
   public warn(message: string, options: LoggingOptions = { title: 'WARN', colors: { title: 'yellow' } }): void {
-    this.print(message, { title: 'WARN', colors: { title: 'yellow' }, ...options });
+    this.print(message, { title: 'WARN', ...options, colors: { title: 'yellow', ...options.colors } });
   }
 
   /**
@@ -171,7 +198,7 @@ class Logger {
    * ```
    */
   public log(message: string, options: LoggingOptions = { title: 'LOG', colors: { title: 'blue' } }): void {
-    this.print(message, { title: 'LOG', colors: { title: 'blue' }, ...options });
+    this.print(message, { title: 'LOG', ...options, colors: { title: 'blue', ...options.colors } });
   }
 
   /**
@@ -184,8 +211,8 @@ class Logger {
    * ```
    * @return         The given message with the given color.
    */
-  public colorize(color: typeof Color, message: string): string {
-    return format(message, color, 'white');
+  public colorize(color: typeof Chalk.Color, message: string): string {
+    return format(message, color);
   }
 
   /**
@@ -197,7 +224,7 @@ class Logger {
    * logger.color('blue', 'hello world :)'); // => (blue)hello world :)(/blue)
    * ```
    */
-  public color(color: typeof Color, message: string): void {
+  public color(color: typeof Chalk.Color, message: string): void {
     console.log(this.colorize(color, message));
   }
 }
