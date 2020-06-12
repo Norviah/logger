@@ -1,3 +1,7 @@
+# directories
 lib
-.DS_Store
+logs
 node_modules
+
+# files
+.DS_Store
