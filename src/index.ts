@@ -193,16 +193,26 @@ export class Logger {
       // is given, combine it with the base directory.
       const directory: string = options.subDir ? join(this.options.dir, options.subDir) : this.options.dir;
 
+      // Remove every ANSI code from the message, as we're saving it to a file
+      // and don't want any unecessary content.
+      message = `${message.replace(this.ansi, '')}\n`;
+
       // If a sub-directory is given, make sure that each sub-directory exists
       // within the base directory.
       if (options.subDir) {
         if (!existsSync(directory)) mkdirSync(directory, { recursive: true });
       }
 
-      // If a name isn't given, default to the current date.
-      const name: string = options.name ?? this.options.name ?? now.unixFmt('MM-DD-YYYY');
+      // Default to the current date if a name isn't given.
+      const name: string = `${options.name ?? this.options.name ?? now.unixFmt('MM-DD-YYYY')}.txt`;
 
-      appendFileSync(join(directory, `${name}.txt`), `${message.replace(this.ansi, '')}\n`);
+      appendFileSync(join(directory, name), message);
+
+      // If a sub-directory was given, then we check if the user wants to save
+      // the log into the base directory as well.
+      if (options.subDir && (options.both ?? this.options.both)) {
+        appendFileSync(join(this.options.dir, name), message);
+      }
     }
   }
 

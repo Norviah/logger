@@ -20,6 +20,12 @@ export interface LoggingOptions {
   subDir: string;
 
   /**
+   * If a sub-directory is given, this flag determines if this log should be
+   * saved to the base directory as well.
+   */
+  both: boolean;
+
+  /**
    * Represents colors for certain parts of a log.
    */
   colors: {

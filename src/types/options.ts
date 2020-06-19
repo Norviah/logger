@@ -32,4 +32,10 @@ export interface Options {
    * %m => the message to log.
    */
   log: string;
+
+  /**
+   * If a sub-directory is given, this flag determines if a log should be
+   * saved to the base directory as well.
+   */
+  both: boolean;
 }

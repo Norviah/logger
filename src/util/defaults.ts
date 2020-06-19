@@ -10,4 +10,5 @@ export const defaults: Options = {
   title: '%t: ',
   log: '%d %t%m',
   name: undefined,
+  both: false,
 };
