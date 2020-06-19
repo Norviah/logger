@@ -14,7 +14,7 @@
 
 ▸ **syntax**(`message`: string): *string*
 
-*Defined in [util/syntax.ts:8](https://github.com/norviah/logger/blob/c3da9c4/src/util/syntax.ts#L8)*
+*Defined in [util/syntax.ts:8](https://github.com/norviah/logger/blob/4552f79/src/util/syntax.ts#L8)*
 
 Applies various types of markdown syntax to the message.
 

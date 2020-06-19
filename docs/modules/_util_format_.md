@@ -14,7 +14,7 @@
 
 ▸ **format**(`message`: string, `color`: [Color](_types_color_.md#color) | undefined): *string*
 
-*Defined in [util/format.ts:12](https://github.com/norviah/logger/blob/c3da9c4/src/util/format.ts#L12)*
+*Defined in [util/format.ts:12](https://github.com/norviah/logger/blob/4552f79/src/util/format.ts#L12)*
 
 Applies the given color to the message.
 
