@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/norviah/logger/compare/v1.4.0...v1.5.0) (2020-06-19)
+
+
+### Features
+
+* added an option to save logs into the base directory when saving into a sub directory ([4552f79](https://github.com/norviah/logger/commit/4552f798e5add82285347ee3aeb37ff909a9837e))
+
 ## 1.4.0 (2020-06-12)
 
 
