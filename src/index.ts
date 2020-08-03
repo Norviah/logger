@@ -30,7 +30,7 @@ export class Logger {
   /**
    * Represents the format for logs.
    */
-  public format: Pick<Options, 'date' | 'title' | 'log'>;
+  public format: Pick<Options, 'date' | 'title' | 'format'>;
 
   /**
    * Initialize a new Logger instance.
@@ -88,7 +88,7 @@ export class Logger {
     this.options = options = { ...defaults, ...options };
 
     // Set the format for logging, to make code a bit more readable.
-    this.format = { date: this.options.date, title: this.options.title, log: this.options.log };
+    this.format = { date: this.options.date, title: this.options.title, format: this.options.format };
 
     if (options.write && !existsSync(this.options.dir)) {
       mkdirSync(this.options.dir, { recursive: true });
@@ -184,7 +184,7 @@ export class Logger {
     message = format(message, options.colors.message);
 
     // Format the message.
-    message = this.format.log.replace(/%d/g, date).replace(/%t/g, title).replace(/%m/g, message);
+    message = this.format.format.replace(/%d/g, date).replace(/%t/g, title).replace(/%m/g, message);
 
     console.log(message);
 

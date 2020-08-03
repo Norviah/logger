@@ -19,7 +19,7 @@ To change how `Logger` works, you may pass an object during initialization, note
   - date `string`: Represents the format for the date, in Unix formatting.
   - title `string`: Represents the format for the title.
     - `%t` will be replaced with the actual title.
-  - log `string`: Represents the format for a log.
+  - format `string`: Represents the format for a log.
     - `%d`: will be replaced with the date,
     - `%t`: will be replaced with the title, and
     - `%m`: will be replaced with the message to log.
@@ -67,7 +67,7 @@ let logger = new Logger({
 //   dir: join(path, 'logs'), // the sub-directory 'logs' under the root directory
 //   date: '[ MM-dd-yyyy h:mm a ]',
 //   title: '%t: ',
-//   log: '%d %t%m',
+//   format: '%d %t%m',
 // };
 
 // If Logger is initialized with no options, Logger will only print to the
