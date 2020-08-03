@@ -204,7 +204,7 @@ export class Logger {
       }
 
       // Default to the current date if a name isn't given.
-      const name: string = `${options.name ?? this.options.name ?? now.unixFmt('MM-DD-YYYY')}.txt`;
+      const name: string = `${options.name ?? this.options.name ?? now.unixFmt('MM-dd-YYYY')}.txt`;
 
       appendFileSync(join(directory, name), message);
 
