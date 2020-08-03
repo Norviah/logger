@@ -8,7 +8,7 @@ export const defaults: Options = {
   dir: join(path, 'logs'),
   date: '[ MM-dd-yyyy h:mm a ]',
   title: '%t: ',
-  log: '%d %t%m',
+  format: '%d %t%m',
   name: undefined,
   both: false,
 };

@@ -31,7 +31,7 @@ export interface Options {
    * %t => the title, and
    * %m => the message to log.
    */
-  log: string;
+  format: string;
 
   /**
    * If a sub-directory is given, this flag determines if a log should be
