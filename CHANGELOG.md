@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/norviah/logger/compare/v2.0.1...v2.1.1) (2021-03-05)
+
+
+### Features
+
+* change LoggingOptions into separate interfaces ([b7be255](https://github.com/norviah/logger/commit/b7be25582245fe19042db05e8a6e3bb804480de8))
+* implement a quick and dirty way to only write logs ([14646f0](https://github.com/norviah/logger/commit/14646f002bc5cb207842a28d4ff57ef458530622))
+
 ## [2.1.0](https://github.com/norviah/logger/compare/v2.0.1...v2.1.0) (2021-03-05)
 
 
