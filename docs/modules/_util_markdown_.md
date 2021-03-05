@@ -14,7 +14,7 @@
 
 • **markdown**: *Map‹RegExp, Chalk›* = new Map()
 
-*Defined in [util/markdown.ts:7](https://github.com/Norviah/logger/blob/7f44bca/src/util/markdown.ts#L7)*
+*Defined in [util/markdown.ts:7](https://github.com/Norviah/logger/blob/3894311/src/util/markdown.ts#L7)*
 
 Holds references to a few regex that matches a few markdown syntax, with the
 value representing the method that applies the targeted syntax.

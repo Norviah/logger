@@ -2,7 +2,7 @@
 
 # @norviah/logger
 
-A simple logging system for `node.js` and `Typescript`. With `Logger` and <code>[Chalk](https://www.npmjs.com/package/chalk)</code>, you can print in a structured, and pretty, manner. In addition, it's possible to save logs into a file.
+A simple logging system for `node.js` and `Typescript`. With `Logger` and <code>[Chalk](https://www.npmjs.com/package/chalk)</code>, you can print in a structured and pretty manner. In addition, it's possible to save logs into a file.
 
 ### Installation
 

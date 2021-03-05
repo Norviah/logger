@@ -40,7 +40,7 @@ A simple logging system.
 
 \+ **new Logger**(`options`: Partial‹[Options](../interfaces/_types_options_.options.md)›): *[Logger](_index_.logger.md)*
 
-*Defined in [index.ts:33](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L33)*
+*Defined in [index.ts:35](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L35)*
 
 Initialize a new Logger instance.
 
@@ -105,7 +105,7 @@ Name | Type | Default | Description |
 
 • **ansi**: *RegExp* = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
 
-*Defined in [index.ts:23](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L23)*
+*Defined in [index.ts:25](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L25)*
 
 Matches all ANSI codes in a string.
 
@@ -115,7 +115,7 @@ ___
 
 • **format**: *Pick‹[Options](../interfaces/_types_options_.options.md), "date" | "title" | "format"›*
 
-*Defined in [index.ts:33](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L33)*
+*Defined in [index.ts:35](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L35)*
 
 Represents the format for logs.
 
@@ -125,7 +125,7 @@ ___
 
 • **options**: *[Options](../interfaces/_types_options_.options.md)*
 
-*Defined in [index.ts:18](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L18)*
+*Defined in [index.ts:20](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L20)*
 
 Options for the system.
 
@@ -135,7 +135,7 @@ Options for the system.
 
 ▸ **color**(`color`: [Color](../modules/_types_color_.md#color), `message`: string): *void*
 
-*Defined in [index.ts:290](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L290)*
+*Defined in [index.ts:294](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L294)*
 
 Applies the given color to the message and prints it into the console.
 
@@ -154,7 +154,7 @@ ___
 
 ▸ **colorize**(`color`: [Color](../modules/_types_color_.md#color), `message`: string): *string*
 
-*Defined in [index.ts:281](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L281)*
+*Defined in [index.ts:285](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L285)*
 
 Applies the given color to the message and returns it.
 
@@ -173,9 +173,9 @@ ___
 
 ###  error
 
-▸ **error**(`message`: string, `options`: Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)›): *void*
+▸ **error**(`message`: string, `options`: Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)›): *void*
 
-*Defined in [index.ts:229](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L229)*
+*Defined in [index.ts:233](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L233)*
 
 A shortcut to output an error, the title is set to 'ERROR' and is red.
 
@@ -190,7 +190,7 @@ logger.error('message');
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `message` | string | - | The message to print. |
-`options` | Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)› | { title: 'ERROR', colors: { title: 'red' } } | Options for logging. |
+`options` | Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)› | { title: 'ERROR', colors: { title: 'red' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -198,9 +198,9 @@ ___
 
 ###  log
 
-▸ **log**(`message`: string, `options`: Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)›): *void*
+▸ **log**(`message`: string, `options`: Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)›): *void*
 
-*Defined in [index.ts:271](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L271)*
+*Defined in [index.ts:275](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L275)*
 
 A shortcut to output a log, the title is 'LOG' and is the blue.
 
@@ -215,7 +215,7 @@ logger.log('message');
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `message` | string | - | The message to print. |
-`options` | Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)› | { title: 'LOG', colors: { title: 'blue' } } | Options for logging. |
+`options` | Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)› | { title: 'LOG', colors: { title: 'blue' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -223,9 +223,9 @@ ___
 
 ###  print
 
-▸ **print**(`message`: string, `options`: Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)›): *void*
+▸ **print**(`message`: string, `options`: Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)›): *void*
 
-*Defined in [index.ts:170](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L170)*
+*Defined in [index.ts:172](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L172)*
 
 Prints the message to the console with the given colors applied, and, if
 wanted, saves the log to a file.
@@ -302,7 +302,7 @@ new Logger({ date: '[ __MM__-dd **hh** ]' }).print('***world***', { title: '__he
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `message` | string | - | The message to log. |
-`options` | Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)› | { colors: this.colors } | Options for the log. |
+`options` | Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)› | { colors: this.colors } | Options for the log. |
 
 **Returns:** *void*
 
@@ -310,9 +310,9 @@ ___
 
 ###  success
 
-▸ **success**(`message`: string, `options`: Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)›): *void*
+▸ **success**(`message`: string, `options`: Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)›): *void*
 
-*Defined in [index.ts:243](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L243)*
+*Defined in [index.ts:247](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L247)*
 
 A shortcut to output a success, the title is 'OK' and is the green.
 
@@ -327,7 +327,7 @@ logger.success('message');
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `message` | string | - | The message to print. |
-`options` | Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)› | { title: 'OK', colors: { title: 'green' } } | Options for logging. |
+`options` | Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)› | { title: 'OK', colors: { title: 'green' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -335,9 +335,9 @@ ___
 
 ###  warn
 
-▸ **warn**(`message`: string, `options`: Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)›): *void*
+▸ **warn**(`message`: string, `options`: Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)›): *void*
 
-*Defined in [index.ts:257](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L257)*
+*Defined in [index.ts:261](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L261)*
 
 A shortcut to output a warning, the title is 'WARN' and is the yellow.
 
@@ -352,7 +352,7 @@ logger.warn('message');
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
 `message` | string | - | The message to print. |
-`options` | Partial‹[LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)› | { title: 'WARNING', colors: { title: 'yellow' } } | Options for logging. |
+`options` | Partial‹[LoggingOptions](../modules/_types_loggingoptions_.md#loggingoptions)› | { title: 'WARNING', colors: { title: 'yellow' } } | Options for logging. |
 
 **Returns:** *void*
 
@@ -362,7 +362,7 @@ Name | Type | Default | Description |
 
 ### ▪ **colors**: *object*
 
-*Defined in [index.ts:28](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L28)*
+*Defined in [index.ts:30](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L30)*
 
 Represents the default colors used when logging.
 
@@ -370,16 +370,16 @@ Represents the default colors used when logging.
 
 • **date**: *"gray"* = "gray"
 
-*Defined in [index.ts:28](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L28)*
+*Defined in [index.ts:30](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L30)*
 
 ###  message
 
 • **message**: *"white"* = "white"
 
-*Defined in [index.ts:28](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L28)*
+*Defined in [index.ts:30](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L30)*
 
 ###  title
 
 • **title**: *"gray"* = "gray"
 
-*Defined in [index.ts:28](https://github.com/Norviah/logger/blob/7f44bca/src/index.ts#L28)*
+*Defined in [index.ts:30](https://github.com/Norviah/logger/blob/3894311/src/index.ts#L30)*
