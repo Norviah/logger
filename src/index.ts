@@ -188,7 +188,9 @@ export class Logger {
     // Format the message.
     message = this.format.format.replace(/%d/g, date).replace(/%t/g, title).replace(/%m/g, message);
 
-    console.log(message);
+    if (!options.noPrint) {
+      console.log(message);
+    }
 
     if (this.options.write) {
       // Initialize a reference to the directory to write to, if a sub-directory
