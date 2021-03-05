@@ -3,8 +3,10 @@ import { join } from 'path';
 import spacetime from 'spacetime';
 
 import { Color } from './types/color';
+import { ColorOptions } from './types/colorOptions';
 import { LoggingOptions } from './types/loggingOptions';
 import { Options } from './types/options';
+
 import { format } from './util/format';
 import { defaults } from './util/defaults';
 
@@ -25,7 +27,7 @@ export class Logger {
   /**
    * Represents the default colors used when logging.
    */
-  public colors: Required<LoggingOptions['colors']> = { date: 'gray', title: 'gray', message: 'white' };
+  public colors: ColorOptions = { date: 'gray', title: 'gray', message: 'white' };
 
   /**
    * Represents the format for logs.
