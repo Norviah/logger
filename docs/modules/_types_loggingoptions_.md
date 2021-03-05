@@ -4,6 +4,14 @@
 
 ## Index
 
-### Interfaces
+### Type aliases
 
-* [LoggingOptions](../interfaces/_types_loggingoptions_.loggingoptions.md)
+* [LoggingOptions](_types_loggingoptions_.md#loggingoptions)
+
+## Type aliases
+
+###  LoggingOptions
+
+Ƭ **LoggingOptions**: *[WriteOptions](../interfaces/_types_writeoptions_.writeoptions.md) & object*
+
+*Defined in [types/loggingOptions.ts:4](https://github.com/Norviah/logger/blob/3894311/src/types/loggingOptions.ts#L4)*
