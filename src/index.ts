@@ -295,5 +295,3 @@ export class Logger {
     console.log(this.colorize(color, message));
   }
 }
-
-new Logger().log('hi', { print: false });
