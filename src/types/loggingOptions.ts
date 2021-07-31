@@ -10,5 +10,5 @@ export type LoggingOptions = WriteOptions & {
   /**
    * Determines if the log should be printed to the console.
    */
-  noPrint: boolean;
+  print: boolean;
 };
