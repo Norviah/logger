@@ -188,7 +188,7 @@ export class Logger {
     // Format the message.
     message = this.format.format.replace(/%d/g, date).replace(/%t/g, title).replace(/%m/g, message);
 
-    if (!options.noPrint) {
+    if (options.print === undefined || options.print !== false) {
       console.log(message);
     }
 
@@ -295,3 +295,5 @@ export class Logger {
     console.log(this.colorize(color, message));
   }
 }
+
+new Logger().log('hi', { print: false });
