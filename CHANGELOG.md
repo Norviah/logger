@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/norviah/logger/compare/v2.1.1...v3.0.0) (2021-07-31)
+
+
+### Features
+
+* improve the implementation of determining whether a log should be printed ([22ebba1](https://github.com/norviah/logger/commit/22ebba11c7610df18d1f7fa1e6e1dab337679a35))
+
 ### [2.1.1](https://github.com/norviah/logger/compare/v2.0.1...v2.1.1) (2021-03-05)
 
 
