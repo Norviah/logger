@@ -98,9 +98,37 @@ export class Logger {
   }
 
   /**
+   * A helper method used to format the given message into the format for a log.
+   * @param  message The message to format.
+   * @param  options Options for the log.
+   * @return         The given message generated into the format for a log.
+   */
+  private generate(message: string, options: Partial<LoggingOptions> = { colors: this.colors }): string {
+    // Get the default colors in addition to given overrides.
+    options.colors = { ...this.colors, ...options.colors };
+
+    // Initialize a new spacetime moment to represent the current time and date.
+    const now = spacetime.now();
+
+    // Apply the color to the date.
+    const date: string = format(now.unixFmt(this.format.date), options.colors.date);
+
+    // Apply the color to the title.
+    const title: string = options.title ? format(this.format.title.replace(/%t/g, options.title), options.colors.title) : '';
+
+    // Apply the color to the message.
+    message = format(message, options.colors.message);
+
+    // Format the message.
+    message = this.format.format.replace(/%d/g, date).replace(/%t/g, title).replace(/%m/g, message);
+
+    return message;
+  }
+
+  /**
    * Prints the message to the console with the given colors applied, and, if
    * wanted, saves the log to a file.
-   * @param message The message to log.
+   * @param body    The message to log.
    * @param options Options for the log.
    * @examples
    * ```typescript
@@ -169,54 +197,52 @@ export class Logger {
    *
    * ```
    */
-  print(message: string, options: Partial<LoggingOptions> = { colors: this.colors }): void {
-    // Get the default colors in addition to given overrides.
-    options.colors = { ...this.colors, ...options.colors };
+  public print(body: string, options: Partial<LoggingOptions> = { colors: this.colors }): void {
+    // First we'll use the helper method to format the given body into the
+    // desired format for a log.
+    const log: string = this.generate(body, options);
 
-    // Initialize a new spacetime moment to represent the current time and date.
+    console.log(log);
+
+    // If the user wishes, we'll save this log into a file.
+    if (this.options.write) {
+      this.write(body, options);
+    }
+  }
+
+  /**
+   * Writes the given log into a file without printing it into a console.
+   * @param body    The body of the log.
+   * @param options Options regarding where and how to save the log.
+   */
+  public write(body: string, options: Partial<LoggingOptions> = { colors: this.colors }): void {
+    // First we'll use the helper method to format the given body into the
+    // desired format for a log. We'll remove any ANSI codes from the log as it
+    // won't be needed when saving the log into a file.
+    const log: string = `${this.generate(body, options).replace(this.ansi, '')}\n`;
+
+    // Next we'll initialize a new SpaceTime instance to represent the date.
     const now = spacetime.now();
 
-    // Apply the color to the date.
-    const date: string = format(now.unixFmt(this.format.date), options.colors.date);
+    // Initialize a reference to the directory to write to, if a sub-directory
+    // is given, combine it with the base directory.
+    const directory: string = options.subDir ? join(this.options.dir, options.subDir) : this.options.dir;
 
-    // Apply the color to the title.
-    const title: string = options.title ? format(this.format.title.replace(/%t/g, options.title), options.colors.title) : '';
-
-    // Apply the color to the message.
-    message = format(message, options.colors.message);
-
-    // Format the message.
-    message = this.format.format.replace(/%d/g, date).replace(/%t/g, title).replace(/%m/g, message);
-
-    if (options.print === undefined || options.print !== false) {
-      console.log(message);
+    // If a sub-directory is given, make sure that each sub-directory exists
+    // within the base directory.
+    if (options.subDir) {
+      if (!existsSync(directory)) mkdirSync(directory, { recursive: true });
     }
 
-    if (this.options.write) {
-      // Initialize a reference to the directory to write to, if a sub-directory
-      // is given, combine it with the base directory.
-      const directory: string = options.subDir ? join(this.options.dir, options.subDir) : this.options.dir;
+    // Default to the current date if a name isn't given.
+    const name: string = `${options.name ?? this.options.name ?? now.unixFmt('MM-dd-YYYY')}.txt`;
 
-      // Remove every ANSI code from the message, as we're saving it to a file
-      // and don't want any unecessary content.
-      message = `${message.replace(this.ansi, '')}\n`;
+    appendFileSync(join(directory, name), log);
 
-      // If a sub-directory is given, make sure that each sub-directory exists
-      // within the base directory.
-      if (options.subDir) {
-        if (!existsSync(directory)) mkdirSync(directory, { recursive: true });
-      }
-
-      // Default to the current date if a name isn't given.
-      const name: string = `${options.name ?? this.options.name ?? now.unixFmt('MM-dd-YYYY')}.txt`;
-
-      appendFileSync(join(directory, name), message);
-
-      // If a sub-directory was given, then we check if the user wants to save
-      // the log into the base directory as well.
-      if (options.subDir && (options.both ?? this.options.both)) {
-        appendFileSync(join(this.options.dir, name), message);
-      }
+    // If a sub-directory was given, then we check if the user wants to save
+    // the log into the base directory as well.
+    if (options.subDir && (options.both ?? this.options.both)) {
+      appendFileSync(join(this.options.dir, name), log);
     }
   }
 
@@ -230,7 +256,7 @@ export class Logger {
    * // => [ MM-DD-YYYY ] (red)ERROR(/red): message
    * ```
    */
-  error(message: string, options: Partial<LoggingOptions> = { title: 'ERROR', colors: { title: 'red' } }): void {
+  public error(message: string, options: Partial<LoggingOptions> = { title: 'ERROR', colors: { title: 'red' } }): void {
     this.print(message, { title: 'ERROR', ...options, colors: { title: 'red', ...options.colors } });
   }
 
