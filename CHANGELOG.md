@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/norviah/logger/compare/v3.0.0...v4.0.0) (2021-08-02)
+
+
+### Features
+
+* delegate the writing of logs into a separate method ([032e412](https://github.com/norviah/logger/commit/032e4120e31a3fdc8c732fca7f98b4a697040840))
+
 ## [3.0.0](https://github.com/norviah/logger/compare/v2.1.1...v3.0.0) (2021-07-31)
 
 
