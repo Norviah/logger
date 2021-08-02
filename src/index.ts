@@ -49,7 +49,7 @@ export class Logger {
    * //   dir: join(path, 'logs'), // the sub-directory 'logs' under the root directory
    * //   date: '[ MM-dd-yyyy h:mm a ]',
    * //   title: '%t: ',
-   * //   log: '%d %t%m',
+   * //   format: '%d %t%m',
    * // };
    * const logger = new Logger();
    *
