@@ -189,7 +189,7 @@ export class Logger {
    * // syntax is also available for the title and date, for printing and for
    * // the format.
    *
-   * logger.log('**world**', { title: '__hello__' });
+   * logger.info('**world**', { title: '__hello__' });
    * // => [ MM-DD-YYYY h:mm a ] (u)hello(/u): (b)world(/b)
    *
    * new Logger({ date: '[ __MM__-dd **hh** ]' }).print('***world***', { title: '__hello__', colors: { date: 'red', title: 'yellow' } });
@@ -247,7 +247,7 @@ export class Logger {
   }
 
   /**
-   * A shortcut to output an error, the title is set to 'ERROR' and is red.
+   * A helper method for printing an error, the title is set to 'ERROR' and is red.
    * @param message The message to print.
    * @param options Options for logging.
    * @examples
@@ -261,7 +261,7 @@ export class Logger {
   }
 
   /**
-   * A shortcut to output a success, the title is 'OK' and is the green.
+   * A helper method for printing a success, the title is 'OK' and is the green.
    * @param message The message to print.
    * @param options Options for logging.
    * @examples
@@ -275,7 +275,7 @@ export class Logger {
   }
 
   /**
-   * A shortcut to output a warning, the title is 'WARN' and is the yellow.
+   * A helper method for printing a warning, the title is 'WARN' and is the yellow.
    * @param message The message to print.
    * @param options Options for logging.
    * @examples
@@ -289,17 +289,17 @@ export class Logger {
   }
 
   /**
-   * A shortcut to output a log, the title is 'LOG' and is the blue.
+   * A helper method for printing information, the title is 'INFO' and is blue.
    * @param message The message to print.
    * @param options Options for logging.
    * @examples
    * ```typescript
-   * logger.log('message');
+   * logger.info('message');
    * // => [ MM-DD-YYYY ] (blue)LOG(/blue): message
    * ```
    */
-  public log(message: string, options: Partial<LoggingOptions> = { title: 'LOG', colors: { title: 'blue' } }): void {
-    this.print(message, { title: 'LOG', ...options, colors: { title: 'blue', ...options.colors } });
+  public info(message: string, options: Partial<LoggingOptions> = { title: 'INFO', colors: { title: 'blue' } }): void {
+    this.print(message, { title: 'INFO', ...options, colors: { title: 'blue', ...options.colors } });
   }
 
   /**
