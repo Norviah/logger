@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/norviah/logger/compare/v4.0.0...v5.0.0) (2021-10-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename the log method to info
+
+### Features
+
+* rename the log method to info ([e978216](https://github.com/norviah/logger/commit/e9782165b8cd08700d846dd795c6f76005e40524))
+
 ## [4.0.0](https://github.com/norviah/logger/compare/v3.0.0...v4.0.0) (2021-08-02)
 
 
