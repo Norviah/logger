@@ -1,31 +1,32 @@
+import { Color } from '../types/Color';
 import chalk from 'chalk';
 
-import { syntax } from './syntax';
-import { Color } from '../types/color';
+import { markdown } from './markdown';
 
 /**
- * Applies the given color to the message.
- * @param  message The message to apply the color to.
- * @param  color   The color to apply to the message.
- * @return         The given message formatted with markdown and color.
+ * Applies desired colors and markdown syntax into the given string.
+ * @param string The string to format.
+ * @param color  The color to apply to the message.
+ * @returns      The given string formatted with markdown and color.
  */
-export function format(message: string, color: Color | undefined): string {
-  // Make sure that a color was given and that it's supported by Chalk.
-  if (!color || !chalk[color]) {
-    // If the parameter is a string, we know that the given color isn't
-    // supported by Chalk, so we inform the user of their mistake.
-    if (typeof color === 'string') {
-      console.warn(`Chalk doesn't support the color '${color}', defaulting to 'white'.`);
-    }
+export function format(string: string, color: Color = 'white'): string {
+  // `format` is the main function for `Logger` that formats logs with desired
+  // colors and, additionally, looks for any markdown syntax within the given
+  // string, applying it via `chalk` if any are found.
 
+  // We'll apply the desired color to the string. If `chalk` doesn't support the
+  // specified color, we'll opt to `white`.
+  if (!chalk[color]) {
     color = 'white';
   }
 
-  // Use Chalk to apply the given color to the message.
-  message = chalk[color](message);
+  string = chalk[color](string);
 
-  // If the message has markdown syntax, apply it using Chalk.
-  message = syntax(message);
+  // Next we'll look for any supported markdown syntax using `markdown`.
+  // For any found syntax, we'll apply the specified `chalk` function to it.
+  for (const syntax in markdown) {
+    string = string.replace(markdown[syntax as keyof typeof markdown].expression, `${markdown[syntax as keyof typeof markdown].exec('$1')}`);
+  }
 
-  return message;
+  return string;
 }
