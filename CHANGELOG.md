@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/norviah/logger/compare/v5.0.0...v6.0.0) (2022-01-08)
+
+
+### Features
+
+* extract regular expressions into a separate file ([44c9988](https://github.com/norviah/logger/commit/44c9988f1f5811f1208888a8dcf7d492d0b79cef))
+* implement a script to represent absolute paths ([9a378c4](https://github.com/norviah/logger/commit/9a378c4313c3f4d286e7ee6143c8701728b1fa03))
+* implement a type to reference the structure for the format of logs ([3839a7c](https://github.com/norviah/logger/commit/3839a7c3270755602971b773601ae86c130c38cb))
+* implement types to ensure whether or not all properties of an object are provided ([e00f491](https://github.com/norviah/logger/commit/e00f491baeb6abb524c8be3d9cfdba6e9ad443ed))
+* implement types to represent options ([bbd418a](https://github.com/norviah/logger/commit/bbd418af4bf48ec82612851c2f686cf0128bcb78))
+* modify the markdown set to an object instead ([fc9c6f2](https://github.com/norviah/logger/commit/fc9c6f29790eac5e117105150bf4a3c8342c5ffb))
+* modify the markdown set to an object instead ([ee5d247](https://github.com/norviah/logger/commit/ee5d2473e90389fc0217b37b5e259916b44d9517))
+
 ## [5.0.0](https://github.com/norviah/logger/compare/v4.0.0...v5.0.0) (2021-10-16)
 
 
