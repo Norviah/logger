@@ -1,24 +1,34 @@
 import chalk from 'chalk';
 
 /**
- * Holds references to a few regex that matches a few markdown syntax, with the
- * value representing the method that applies the targeted syntax.
+ * Represents the supported markdown syntax for logging.
+ * Each desired effect contains an regular expression that matches the desired
+ * markdown syntax, along with the function from `chalk` to apply.
  */
-const markdown: Map<RegExp, chalk.Chalk> = new Map();
+export const markdown = {
+  /**
+   * Matches `**[string]**`, resulting in the given string to be bold.
+   */
+  bold: { expression: /\*\*(.*?)\*\*/g, exec: chalk.bold },
 
-// Matches '**[phrase]**' to embold text.
-markdown.set(/\*\*(.*?)\*\*/g, chalk.bold);
+  /**
+   * Matches `~~[string]~~`, resulting in the given string having a horizontal
+   * line through the center.
+   */
+  strikethrough: { expression: /~~(.*?)~~/g, exec: chalk.strikethrough },
 
-// Matches '~~[phrase]~~' to strike-through text.
-markdown.set(/~~(.*?)~~/g, chalk.strikethrough);
+  /**
+   * Matches `*[string]*`, resulting in making the given string italic.
+   */
+  italic: { expression: /\*(.*?)\*/g, exec: chalk.italic },
 
-// Matches '*[phrase]*' to italicise text.
-markdown.set(/\*(.*?)\*/g, chalk.italic);
+  /**
+   * Matches `__[string]__`, putting a horizontal line under the given string.
+   */
+  underline: { expression: /__(.*?)__/g, exec: chalk.underline },
 
-// Matches '__[phrase]__' to underline text.
-markdown.set(/__(.*?)__/g, chalk.underline);
-
-// Matches '![phrase]!' to invert colors.
-markdown.set(/!(.*?)!/g, chalk.inverse);
-
-export { markdown };
+  /**
+   * Matches `!![string]!!`, inverting the background and foregound colors.
+   */
+  inverse: { expression: /!!(.*?)!!/g, exec: chalk.inverse },
+};
