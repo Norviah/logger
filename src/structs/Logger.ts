@@ -12,6 +12,7 @@ import { Options } from '../types/Options';
 
 import { deconstruct } from '../util/deconstruct';
 import { format } from '../util/format';
+import { markdown } from '../util/markdown';
 
 import * as spacetime from 'spacetime';
 import * as defaults from '../util/default';
@@ -116,8 +117,8 @@ export class Logger {
    * // and markdown syntax, and finally returns the result.
    *
    * // As an example, let's say we have set the desired format into:
-   * // {
    * //   date: '[ MM-dd-yyyy h:mm a ]',
+   * // {
    * //   title: '%t: ',
    * //   general: '%d %t%c',
    * // }
@@ -131,8 +132,13 @@ export class Logger {
    * // `[ 01-01-1970 12:00 AM ] hello: world`
    * ```
    */
-  public generate(content: string, options: Partial<LoggingOptions> = { colors: this.options.colors }): string {
-    // First, we'll get the default colors for aspects of logs in addition to
+  public generate(content: string | string[], options: Partial<LoggingOptions> = { colors: this.options.colors }): string {
+    // As the method accepts a string or an array of strings for the content to
+    // print, we'll wrap the content in a string if it isn't in order to have
+    // a single implementation for both options.
+    content = Array.isArray(content) ? content : [content];
+
+    // Here we'll get the default colors for aspects of logs in addition to
     // any overridden colors specified within `options`.
     const colors: Required<ColorOptions> = { ...this.options.colors, ...options.colors };
 
@@ -141,21 +147,37 @@ export class Logger {
     const now: Spacetime = spacetime.default.now();
 
     // References the current date, formatted to the likings specified within
-    // the initialized options. Here we use `Dayjs` to format the given date
+    // the initialized options. Here we use `Spacetime` to format the given date
     // using a unix-like `date` formatting.
     const date: string = format(now.unixFmt(this.options.format.date), colors.date);
 
-    // References the title of the log.
-    // If a title isn't specified, then the log won't have a title set.
-    // The title, if one is specified, is ran through the desired format for
-    // titles and also through the `format` function.
+    // References the title for the log, if one isn't specified then the log
+    // won't have a title. The title is then ran through the desired format.
     const title: string = options.title ? format(this.options.format.title.replace(regex.log.title, options.title), colors.title) : '';
 
-    // As for the actual contents of the log, we'll simply override the existing
-    // reference with the result of `format`.
-    content = format(content, colors.content);
+    // When printing logs, we want to be able to support multiple lines, if an
+    // array of strings is passed we want to print the first string as normal,
+    // but we want the rest of the array to be printed with an indent so they're
+    // aligned with the start of the first string.
 
-    return this.options.format.general.replace(regex.log.date, date).replace(regex.log.title, title).replace(regex.log.content, content);
+    // To do this, we'll first construct a base of the log, which consists of
+    // the date and title with the special character representing where to place
+    // the content. We'll use this base to determine how long to indent.
+    const base: string = this.options.format.general.replace(regex.log.date, date).replace(regex.log.title, title);
+
+    // As the log consits of special characters to represent colors or
+    // formatting, we'll use the Characters method to determine the actual
+    // length of the log.
+    const width: number = Logger.Characters(base.replace(regex.log.content, ''));
+
+    // For every other given string, we'll place an indent determined by the
+    // width of the base of the log.
+    const extra: string[] = content.slice(1).map((string: string) => `${Array(width).fill(' ').join('')}${string}`);
+
+    // We'll then join the header and the rest of the content into a string.
+    const string: string = format([content[0], ...extra].join('\n'), colors.content);
+
+    return base.replace(regex.log.content, string);
   }
 
   /**
@@ -194,7 +216,7 @@ export class Logger {
    * @param content The content of the log.
    * @param options Options for logging.
    */
-  public print(content: string, options: Partial<LoggingOptions> = { colors: this.options.colors }): void {
+  public print(content: string | string[], options: Partial<LoggingOptions> = { colors: this.options.colors }): void {
     // We'll use the helper method to generate the log.
     const log: string = this.generate(content, options);
 
@@ -254,11 +276,11 @@ export class Logger {
    * // `LoggingOptions` interface, as it inherits `WriteOptions`.
    * ```
    */
-  public write(content: string, options: Partial<LoggingOptions> = { colors: this.options.colors }): void {
+  public write(content: string | string[], options: Partial<LoggingOptions> = { colors: this.options.colors }): void {
     // First, we'll use the helper method to generate the log if it were to be
     // printed. From the result, we'll remove any ANSI codes as those values
     // aren't necessary when saving the log into a file.
-    const log: string = `${this.generate(content, options).replace(regex.ansi, '')}\n`;
+    const log: string = `${this.generate(content, options).replace(regex.ansi, '')}\n\n`;
 
     // Next, we'll initialize a new `Dayjs` instance to reference the time.
     // Through this reference we'll be able to get the current date to save the
@@ -299,7 +321,7 @@ export class Logger {
    * // => [ 01-01-1970 12:00 AM ] error: sample text
    * ```
    */
-  public error(content: string, options?: Partial<LoggingOptions>): void {
+  public error(content: string | string[], options?: Partial<LoggingOptions>): void {
     this.print(content, { title: 'error', ...options, colors: { title: 'red', ...options?.colors } });
   }
 
@@ -316,7 +338,7 @@ export class Logger {
    * // => [ 01-01-1970 12:00 AM ] ok: sample text
    * ```
    */
-  public success(content: string, options?: Partial<LoggingOptions>): void {
+  public success(content: string | string[], options?: Partial<LoggingOptions>): void {
     this.print(content, { title: 'ok', ...options, colors: { title: 'green', ...options?.colors } });
   }
 
@@ -333,7 +355,7 @@ export class Logger {
    * // => [ 01-01-1970 12:00 AM ] warning: sample text
    * ```
    */
-  public warn(content: string, options?: Partial<LoggingOptions>): void {
+  public warn(content: string | string[], options?: Partial<LoggingOptions>): void {
     this.print(content, { title: 'warning', ...options, colors: { title: 'yellow', ...options?.colors } });
   }
 
@@ -350,7 +372,7 @@ export class Logger {
    * // => [ 01-01-1970 12:00 AM ] info: sample text
    * ```
    */
-  public info(content: string, options?: Partial<LoggingOptions>): void {
+  public info(content: string | string[], options?: Partial<LoggingOptions>): void {
     this.print(content, { title: 'info', ...options, colors: { title: 'blue', ...options?.colors } });
   }
 
@@ -380,5 +402,49 @@ export class Logger {
    */
   public color(color: Color, string: string): void {
     console.log(this.colorize(color, string));
+  }
+
+  /**
+   * Finds the amount of characters displayed when printing the provided string
+   * through the `Printer.Print` method.
+   *
+   * When logging contents, markdown syntax such as **bold** or *italics* are
+   * supported, the problem being is that the length of strings are used to
+   * format when printing multi-line logs, however these special syntax are
+   * counted in the length but aren't visible when printed.
+   *
+   * `Logger.Characters` finds the correct length of strings by removing these
+   * special characters.
+   * @param string The string to find the true length of.
+   * @return       The true length of the string, regarding to printing.
+   * @example
+   * ```TypeScript
+   * import { Logger } from '@norviah/logger';
+   *
+   * // We'll initialize a string containing markdown syntax.
+   * const string: string = `__**Hello World!**__`;
+   *
+   * // `Logger` is used to print to the console, if we were to print the string
+   * // using `Logger`, e.g.
+   * new Logger().print(string);
+   * // The string would be printed, embolded and italicised.
+   *
+   * // Which is a problem as we use the string's length when aligning lines
+   * // within the main printing method, the string contains markdown syntax
+   * // which will skew the alignments.
+   *
+   * string.length;              // => 20
+   * Printer.Characters(string); // => 12
+   * ```
+   */
+  public static Characters(string: string): number {
+    // `@norviah/logger` exposes the regular expression it uses when finding
+    // markdown syntax through a string, with these expressions, we'll remove
+    // any found expressions through the string.
+    for (const [, value] of Object.entries(markdown)) {
+      string = string.replace(value.expression, '$1');
+    }
+
+    return string.replace(regex.ansi, '').length;
   }
 }
