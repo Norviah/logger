@@ -35,6 +35,8 @@ well, and the desired syntax is applied to the wrapped text.
 
 ### Methods
 
+- [color](Logger.md#color)
+- [colorize](Logger.md#colorize)
 - [error](Logger.md#error)
 - [generate](Logger.md#generate)
 - [info](Logger.md#info)
@@ -42,6 +44,7 @@ well, and the desired syntax is applied to the wrapped text.
 - [success](Logger.md#success)
 - [warn](Logger.md#warn)
 - [write](Logger.md#write)
+- [Characters](Logger.md#characters)
 
 ## Constructors
 
@@ -87,7 +90,7 @@ new Logger({ write: true, });
 
 #### Defined in
 
-structs/Logger.ts:83
+[structs/Logger.ts:82](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L82)
 
 ## Properties
 
@@ -95,15 +98,73 @@ structs/Logger.ts:83
 
 • **options**: [`DeepRequired`](../modules.md#deeprequired)<[`Options`](../interfaces/Options.md)\>
 
-Default options to reference when logging.
+Options to reference when logging.
 Represents default options along with specific options overridden within
 the constructor.
 
 #### Defined in
 
-structs/Logger.ts:49
+[structs/Logger.ts:49](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L49)
 
 ## Methods
+
+### color
+
+▸ **color**(`color`, `string`): `void`
+
+Applies the specified color to the string and prints it to the console.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The color to apply. |
+| `string` | `string` | The string to print, with the desired color applied. |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[structs/Logger.ts:403](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L403)
+
+___
+
+### colorize
+
+▸ **colorize**(`color`, `string`): `string`
+
+Applies the specified color to the string.
+In addition, any markdown syntax specified is also applied.
+
+**`example`**
+```TypeScript
+import { Logger } from '@norviah/logger';
+
+const logger: Logger = new Logger();
+logger.colorize('red', 'hello world');
+// => <red>hello world</red>
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `color` | `Color` | The desired color to apply. |
+| `string` | `string` | The string to apply the color to. |
+
+#### Returns
+
+`string`
+
+`string` with the desired color applied.
+
+#### Defined in
+
+[structs/Logger.ts:394](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L394)
+
+___
 
 ### error
 
@@ -124,7 +185,7 @@ new Logger().error('sample text');
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The content of the log. |
+| `content` | `string` \| `string`[] | The content of the log. |
 | `options?` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -133,7 +194,7 @@ new Logger().error('sample text');
 
 #### Defined in
 
-structs/Logger.ts:307
+[structs/Logger.ts:324](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L324)
 
 ___
 
@@ -165,8 +226,8 @@ general format within `Format` and returns the result.
 // and markdown syntax, and finally returns the result.
 
 // As an example, let's say we have set the desired format into:
-// {
 //   date: '[ MM-dd-yyyy h:mm a ]',
+// {
 //   title: '%t: ',
 //   general: '%d %t%c',
 // }
@@ -184,7 +245,7 @@ general format within `Format` and returns the result.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The contents of the log. |
+| `content` | `string` \| `string`[] | The contents of the log. |
 | `options` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -195,7 +256,7 @@ A generated string adhering to the desired format of a log.
 
 #### Defined in
 
-structs/Logger.ts:137
+[structs/Logger.ts:135](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L135)
 
 ___
 
@@ -218,7 +279,7 @@ new Logger().info('sample text');
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The content of the log. |
+| `content` | `string` \| `string`[] | The content of the log. |
 | `options?` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -227,7 +288,7 @@ new Logger().info('sample text');
 
 #### Defined in
 
-structs/Logger.ts:361
+[structs/Logger.ts:375](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L375)
 
 ___
 
@@ -236,13 +297,14 @@ ___
 ▸ **print**(`content`, `options?`): `void`
 
 Prints the given content to the console.
-The main function for `Logger`, `print` is the main entry point into
-logging into the console. Outputted logs are formatted to adhere to the
-format specified within `Format` within `Options` during initialization,
-or default format.
 
-Through `options`, you're able to change certain output of the log.
-For example, colors, as logs are separated within three sections, if
+The main function for `Logger`, `print` is the main entry point to
+logging into the console. Outputted logs are formatted to adhere to the
+format specified within `Format` in `Options` during initialization,
+or the default format.
+
+Through `options`, you're able to change certain output of the log,
+for example, colors. As logs are separated within three sections, if
 desired, you can specify the colors for each section within
 `options.colors`.
 
@@ -257,7 +319,7 @@ have to worry about that. As for the `title`, that can be set within
 output if a `title` isn't set.
 
 Additionally, markdown syntax are supported.
-Within `content` or `options.title`, if you specify one, or more, of the
+Within `content` or `options.title`, you can specify one or more of the
 following markdown syntax:
 - **bold**: `**[string]**`,
 - ~~strikethrough~~: `~~[string]~~`,
@@ -265,13 +327,13 @@ following markdown syntax:
 - __underline__: `__[string]__`, and
 - `!![string]!!`, which inverses the foreground and background color.
 
-Rhe desired syntax is applied to the wrapped strings.
+The desired syntax is applied to the wrapped strings.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The content of the log. |
+| `content` | `string` \| `string`[] | The content of the log. |
 | `options` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -280,7 +342,7 @@ Rhe desired syntax is applied to the wrapped strings.
 
 #### Defined in
 
-structs/Logger.ts:200
+[structs/Logger.ts:219](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L219)
 
 ___
 
@@ -303,7 +365,7 @@ new Logger().success('sample text');
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The content of the log. |
+| `content` | `string` \| `string`[] | The content of the log. |
 | `options?` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -312,7 +374,7 @@ new Logger().success('sample text');
 
 #### Defined in
 
-structs/Logger.ts:325
+[structs/Logger.ts:341](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L341)
 
 ___
 
@@ -335,7 +397,7 @@ new Logger().warn('sample text');
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The content of the log. |
+| `content` | `string` \| `string`[] | The content of the log. |
 | `options?` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -344,7 +406,7 @@ new Logger().warn('sample text');
 
 #### Defined in
 
-structs/Logger.ts:343
+[structs/Logger.ts:358](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L358)
 
 ___
 
@@ -402,7 +464,7 @@ logger.write('hello world', { name: 'hello world' });
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `content` | `string` | The contents of the log. |
+| `content` | `string` \| `string`[] | The contents of the log. |
 | `options` | `Partial`<[`LoggingOptions`](../interfaces/LoggingOptions.md)\> | Options for logging. |
 
 #### Returns
@@ -411,4 +473,57 @@ logger.write('hello world', { name: 'hello world' });
 
 #### Defined in
 
-structs/Logger.ts:261
+[structs/Logger.ts:279](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L279)
+
+___
+
+### Characters
+
+▸ `Static` **Characters**(`string`): `number`
+
+Finds the amount of characters displayed when printing the provided string
+through the `Printer.Print` method.
+
+When logging contents, markdown syntax such as **bold** or *italics* are
+supported, the problem being is that the length of strings are used to
+format when printing multi-line logs, however these special syntax are
+counted in the length but aren't visible when printed.
+
+`Logger.Characters` finds the correct length of strings by removing these
+special characters.
+
+**`example`**
+```TypeScript
+import { Logger } from '@norviah/logger';
+
+// We'll initialize a string containing markdown syntax.
+const string: string = `__**Hello World!**__`;
+
+// `Logger` is used to print to the console, if we were to print the string
+// using `Logger`, e.g.
+new Logger().print(string);
+// The string would be printed, embolded and italicised.
+
+// Which is a problem as we use the string's length when aligning lines
+// within the main printing method, the string contains markdown syntax
+// which will skew the alignments.
+
+string.length;              // => 20
+Printer.Characters(string); // => 12
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `string` | `string` | The string to find the true length of. |
+
+#### Returns
+
+`number`
+
+The true length of the string, regarding to printing.
+
+#### Defined in
+
+[structs/Logger.ts:440](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L440)

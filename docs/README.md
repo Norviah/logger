@@ -2,7 +2,7 @@
 
 ## @norviah/logger
 
-A simple logging system for `node.js` and `Typescript`. With `Logger` and <code>[Chalk](https://www.npmjs.com/package/chalk)</code>, you can print in a structured and pretty manner. In addition, it's possible to save logs into a file.
+A simple logging system for node.js/TypeScript that uses <code><a href="https://www.npmjs.com/package/chalk">Chalk</a></code>. The purpose of `Logger` is to be a purposeful logging system that allows you to print logs in a structured and pretty manner, in addition to saving logs into a file if desired.
 
 ### Installation
 
@@ -12,69 +12,66 @@ npm install @norviah/logger
 
 ### Usage
 
-To change how `Logger` works, you may pass an object during initialization, note that all values are optional:
-  - write `boolean`: Determines if logs should be written to a file.
-  - dir `string`: The directory that logs will be saved into.
-  - name `string`: The default name of the file that logs will be saved into.
-  - date `string`: Represents the format for the date, in Unix formatting.
-  - title `string`: Represents the format for the title.
-    - `%t` will be replaced with the actual title.
-  - format `string`: Represents the format for a log.
-    - `%d`: will be replaced with the date,
-    - `%t`: will be replaced with the title, and
-    - `%m`: will be replaced with the message to log.
+For a more in depth look into logger, check out the docs [here](./docs/classes/Logger.md).
 
-To print messages, use the `print` method, which takes two parameters:
-  - message `string`: The message to print.
-  - options `(Optional)`:
-    - options.name `string`: The name that this specific log will be saved as, if this value isn't provided, `Logger` will default to the name given during initialization, and if a name wasn't given then, `Logger` will use `MM-DD-YYYY`.
-    - options.title `string`: The title of the log, a log won't be printed if a title isn't given.
-    - subDir `string`: This log will be saved in this sub-directory, or sub-directories, **in** the base directory. For example, if `dir: /Users/norviah/Desktop` was given at initialization, and this method was called with `subDir: base/sub/sub`, the log will be saved to `/Users/norviah/Desktop/base/sub/sub/MM-DD-YYYY.txt`.
-    - colors `Object`: Represents colors used for parts of the log:
-      - date `Color`: The color for the date.
-      - title `Color`: The color for the title.
-      - message `Color`: The color for the message.
-
-The available colors are the colors that are supported by Chalk, which can be viewed [here](https://github.com/chalk/chalk/blob/master/index.d.ts#L56).
-In addition, `Logger` supports a few markdown style as well:
-
-  - '**' to embold text,
-  - '~~' to strike-through text,
-  - '*' to italicise text,
-  - '_' to underline text, and
-  - '!' to invert colors.
-
-If you wrap a phrase around one or more of these symbols, the type it represents will be applied to the phrase. Markdown syntax is available for both logging and formatting parts of a log.
-
-### Examples
-
-This is a ***very*** basic example for `Logger` and what it can do. For more examples, take a look at the [documentation](./docs) directory, specifically [here](https://github.com/Norviah/logger/blob/master/docs/classes/_index_.logger.md).
-
-```typescript
-// Node.js
-const { Logger } = require('@norviah/logger');
-
-// Typescript
+Here is a basic usage:
+```TypeScript
 import { Logger } from '@norviah/logger';
 
-let logger = new Logger({
-  /** options */
-});
-
-// The default values being:
-// options = {
-//   write: false,
-//   dir: join(path, 'logs'), // the sub-directory 'logs' under the root directory
-//   date: '[ MM-dd-yyyy h:mm a ]',
-//   title: '%t: ',
-//   format: '%d %t%m',
-// };
-
-// If Logger is initialized with no options, Logger will only print to the
-// console. To write logs into a file, pass in a 'write' parameter of true.
-logger = new Logger({ write: true });
-
-// You can also pass in 'dir' to represent the directory that Logger will
-// save files to. Logger will not save logs if the 'write' paramter isn't true.
-logger = new Logger({ write: true, dir: '/Users/norviah/Desktop' });
+const logger = new Logger();
+logger.print('hello world');
 ```
+
+For the example above, the following is printed:
+```
+[ 01-10-2022 1:04 PM ] hello world
+```
+
+#### Structure
+
+In Logger, logs are divided into three sections: the date of the log, the title, and the actual contents. By default, the date
+always appears in a log but titles are optional. If you would like to print a log with a title, you can provide one within the
+`options` parameter for the `print` method. If we extend the example above:
+
+```
+logger.print('world', { title: 'hello' });
+```
+
+This would print:
+```
+[ 01-10-2022 1:04 PM ] hello: world
+```
+
+The title is only printed if one is given. Additionally, there are a few methods within Logger that acts as a shortcut to log
+with a title, those methods being:
+- error
+- success
+- warn
+- info
+
+Each method takes the same input as the `print` method, it just adds a title with the respective name and edits the color of the
+title corresponding to the level.
+
+If desired, you can change how logs are printed by modifying these sections in the `format` option. For example, if you don't want
+the date to appear within logs, you can set `options.format.general` to `%t%c`. This will only result in the title (if provided) and
+the contents to appear in logs. You can also set how you want to structure the date or the title, the date is parsed using a format
+similar to the unix `date` command, and titles are as is, with `%t` replaced with the actual title.
+
+#### Color
+
+You can set the color for each section of logs either when initializing a Logger instance of when calling the `print` method. If you
+set colors in the constructor then all logs will be using the specified colors, however if you pass colors in the method directly, then
+that specific log will only consist of the desired color.
+
+#### Writing Logs
+
+If you would like to save logs into a file, you can initialize an instance and set the `write` property to true:
+```TypeScript
+const logger = new Logger({ write: true });
+```
+
+Every log printed will then be saved into a file. By default, logs are saved into the root folder for your project under the `logs`
+subdirectory. Of course you can change this directory by passing in a value for the `dir` option. Additionally, when calling the `print` method, you can specify options for how and where to save that log. For example, you can change the name of the file or if you want that
+specific log to be saved under a subdirectory, which can go on infinitely if desired.
+
+If the name of the file hasn't changed, each log will be appended into that file, separated via a newline.

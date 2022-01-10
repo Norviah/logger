@@ -23,7 +23,7 @@ Represents the color for the contents of a log.
 
 #### Defined in
 
-types/ColorOptions.ts:21
+[types/ColorOptions.ts:21](https://github.com/Norviah/logger/blob/8321782/src/types/ColorOptions.ts#L21)
 
 ___
 
@@ -35,7 +35,7 @@ Represents the color for the date.
 
 #### Defined in
 
-types/ColorOptions.ts:11
+[types/ColorOptions.ts:11](https://github.com/Norviah/logger/blob/8321782/src/types/ColorOptions.ts#L11)
 
 ___
 
@@ -47,4 +47,4 @@ Represents the color for the title.
 
 #### Defined in
 
-types/ColorOptions.ts:16
+[types/ColorOptions.ts:16](https://github.com/Norviah/logger/blob/8321782/src/types/ColorOptions.ts#L16)

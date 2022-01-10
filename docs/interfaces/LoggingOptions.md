@@ -17,6 +17,7 @@
 - [name](LoggingOptions.md#name)
 - [subDir](LoggingOptions.md#subdir)
 - [title](LoggingOptions.md#title)
+- [write](LoggingOptions.md#write)
 
 ## Properties
 
@@ -33,7 +34,7 @@ log should be saved within the root directory and any subdirectories.
 
 #### Defined in
 
-types/WriteOptions.ts:19
+[types/WriteOptions.ts:19](https://github.com/Norviah/logger/blob/8321782/src/types/WriteOptions.ts#L19)
 
 ___
 
@@ -45,7 +46,7 @@ Represents colors to apply for different aspects of a log.
 
 #### Defined in
 
-types/LoggingOptions.ts:8
+[types/LoggingOptions.ts:8](https://github.com/Norviah/logger/blob/8321782/src/types/LoggingOptions.ts#L8)
 
 ___
 
@@ -62,7 +63,7 @@ If not provided, logs will be saved as `MM-DD-YYYY.txt`.
 
 #### Defined in
 
-types/WriteOptions.ts:6
+[types/WriteOptions.ts:6](https://github.com/Norviah/logger/blob/8321782/src/types/WriteOptions.ts#L6)
 
 ___
 
@@ -80,7 +81,7 @@ or multiple, within the root dir for logs provided within
 
 #### Defined in
 
-types/WriteOptions.ts:13
+[types/WriteOptions.ts:13](https://github.com/Norviah/logger/blob/8321782/src/types/WriteOptions.ts#L13)
 
 ___
 
@@ -93,4 +94,21 @@ If not specified, a log won't have a title.
 
 #### Defined in
 
-types/LoggingOptions.ts:14
+[types/LoggingOptions.ts:14](https://github.com/Norviah/logger/blob/8321782/src/types/LoggingOptions.ts#L14)
+
+___
+
+### write
+
+• `Optional` **write**: `boolean`
+
+Determines if a specific log should be saved into a file.
+Overrides the value set within `Options`.
+
+#### Inherited from
+
+[WriteOptions](WriteOptions.md).[write](WriteOptions.md#write)
+
+#### Defined in
+
+[types/WriteOptions.ts:25](https://github.com/Norviah/logger/blob/8321782/src/types/WriteOptions.ts#L25)

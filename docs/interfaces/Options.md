@@ -27,7 +27,7 @@ directory.
 
 #### Defined in
 
-types/Options.ts:33
+[types/Options.ts:30](https://github.com/Norviah/logger/blob/8321782/src/types/Options.ts#L30)
 
 ___
 
@@ -41,7 +41,7 @@ that `chalk` supports.
 
 #### Defined in
 
-types/Options.ts:52
+[types/Options.ts:47](https://github.com/Norviah/logger/blob/8321782/src/types/Options.ts#L47)
 
 ___
 
@@ -54,7 +54,7 @@ into. Defaults to `logs/` within the project's root directory.
 
 #### Defined in
 
-types/Options.ts:22
+[types/Options.ts:20](https://github.com/Norviah/logger/blob/8321782/src/types/Options.ts#L20)
 
 ___
 
@@ -71,7 +71,7 @@ logs are executed trough the desired format.
 
 #### Defined in
 
-types/Options.ts:44
+[types/Options.ts:40](https://github.com/Norviah/logger/blob/8321782/src/types/Options.ts#L40)
 
 ___
 
@@ -89,4 +89,4 @@ the outputted log is saved into a text file.
 
 #### Defined in
 
-types/Options.ts:15
+[types/Options.ts:14](https://github.com/Norviah/logger/blob/8321782/src/types/Options.ts#L14)

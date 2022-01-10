@@ -26,6 +26,10 @@
 
 - [markdown](modules.md#markdown)
 
+### Functions
+
+- [deconstruct](modules.md#deconstruct)
+
 ## Type aliases
 
 ### Color
@@ -37,7 +41,7 @@ As `chalk` is used to output color, the supported colors are from `chalk`.
 
 #### Defined in
 
-types/Color.ts:7
+[types/Color.ts:7](https://github.com/Norviah/logger/blob/8321782/src/types/Color.ts#L7)
 
 ___
 
@@ -91,7 +95,7 @@ const employer: DeepPartial<Employer> = {
 
 #### Defined in
 
-types/DeepPartial.ts:41
+[types/DeepPartial.ts:40](https://github.com/Norviah/logger/blob/8321782/src/types/DeepPartial.ts#L40)
 
 ___
 
@@ -145,11 +149,11 @@ const employer: DeepRequired<Employer> = {
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `T` | extends `Record`<`string`, `any`\> | The interface to construct from, ensuring all levels are required. |
+| `T` | extends `Record`<`string`, `any`\> | The interface to construct from, ensuring all levels are set. |
 
 #### Defined in
 
-types/DeepRequired.ts:45
+[types/DeepRequired.ts:44](https://github.com/Norviah/logger/blob/8321782/src/types/DeepRequired.ts#L44)
 
 ## Variables
 
@@ -183,4 +187,101 @@ markdown syntax, along with the function from `chalk` to apply.
 
 #### Defined in
 
-[util/markdown.ts:8](https://github.com/Norviah/logger/blob/6d4b76d/src/util/markdown.ts#L8)
+[util/markdown.ts:8](https://github.com/Norviah/logger/blob/8321782/src/util/markdown.ts#L8)
+
+## Functions
+
+### deconstruct
+
+▸ **deconstruct**<`T`\>(`required`, `partial`): [`DeepRequired`](modules.md#deeprequired)<`T`\>
+
+Applies the spread syntax for objects in all levels.
+In JavaScript, the `spread` syntax allows an iterable expression to be
+expanded onto places where arguments are expected. An example are arrays,
+`[ ...array ]` can be used to initialize a copy of an existing array.
+
+The `spread` syntax applies to objects as well, albeit it works a bit
+different. Once two objects are spread into an object,
+`{ ...object, ...object }` for example, the properties of the first object
+are applied and the properties of the second object are applied on top. If
+both objects contains a property that is an object, the property from the
+second object is used, regardless if the two set objects contains the same
+properties or not.
+
+`deconstruct` aims to apply the spread syntax on all levels from both
+specified objects, thus allowing properties from the second object to
+override the set values from the first object and allowing properties that
+weren't touched within the second object to exist.
+
+**`example`**
+```TypeScript
+// To portray how spreading works over objects, we'll initialize an interface
+// regarding options, loosely similar to expected options for `Logger`.
+
+interface Options {
+  format?: { date?: string; title?: string; format?: string };
+}
+
+// Here we initialize default values for options.
+// We'll initialize an instance through `DeepRequired<T>`, ensuring
+// properties in all levels are set.
+
+const defaults: DeepRequired<Options> = {
+  format: { date: '[ MMMM dddd ]', title: '%t: ', format: '%d %t%m' },
+};
+
+// During the constructor for `Logger`, a partial instance of `Options` is
+// passed to reference any specified values. Let's assume that this instance
+// represents the passed object.
+
+const specified: DeepPartial<Options> = {
+  format: { date: '[ L ]' },
+};
+
+// The passed options override `format.date`.
+// In the constructor of `Logger`, we want to reference default options along
+// with any passed options, however, if we use the spread syntax, the
+// applied properties are only first level.
+
+const options = { ...defaults, ...specified };
+
+// If we were to observe the contents of `options`, we would see:
+// `{ format: { date: '[ L ]' } }`
+// As the spread syntax only applies on the first level, the other contents
+// of `defaults.format` is gone as it's overridden.
+
+// `deconstruct` aims to solve this by overriding properties per level.
+// Given two objects, the first consisting of default values and the other
+// representing values to override, `deconstruct` iterates through every
+// level and overwrites any specified values from the latter object.
+
+// With the same example, if we were to use `deconstruct` instead, i.e.
+
+const options = deconstruct<Options>(defaults, specified);
+
+// We would get:
+// `{ format: { date: '[ L ]', title: '%t: ', format: '%d %t%m' } }`
+```
+
+#### Type parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `T` | extends `Record`<`string`, `any`\> | The interface representing the structure for each object. |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `required` | [`DeepRequired`](modules.md#deeprequired)<`T`\> | An instance of `T` with all properties set. |
+| `partial` | [`DeepPartial`](modules.md#deeppartial)<`T`\> | An instance of `T` to override any values within `required`. |
+
+#### Returns
+
+[`DeepRequired`](modules.md#deeprequired)<`T`\>
+
+A copy of `required` with any values overridden by `partial`.
+
+#### Defined in
+
+[util/deconstruct.ts:76](https://github.com/Norviah/logger/blob/8321782/src/util/deconstruct.ts#L76)
