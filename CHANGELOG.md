@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.1.0](https://github.com/norviah/logger/compare/v6.0.0...v6.1.0) (2022-01-10)
+
+
+### Features
+
+* implement support for multi-line logs ([0927ba4](https://github.com/norviah/logger/commit/0927ba46fa8d6983ed3abda246f164995eb6cafa))
+
 ## [6.0.0](https://github.com/norviah/logger/compare/v5.0.0...v6.0.0) (2022-01-08)
 
 
