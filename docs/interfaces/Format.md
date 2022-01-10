@@ -21,10 +21,11 @@ console and, if specified, saved into files.
 • `Optional` **date**: `string`
 
 Represents the format for dates.
-Dates are parsed similar to the `date` command, minus the `%` operator. Any
-formatting valid through the `date` command is valid here.
-[Here](https://day.js.org/docs/en/display/format) is a good reference for
-all valid options, if desired, `[text]` can be used to escape characters.
+
+Dates are parsed similarly to unix formatting for the `date` command, minus
+the `%` character. Any formatting valid through the `date` command is
+valid. [Here](https://devhints.io/datetime) is a good reference for valid
+options.
 
 **`example`**
 For example, if we were to parse using the format `D r`, it would output:
@@ -39,7 +40,7 @@ date: 08/16/2018 :: time: 8:02:18 PM
 
 #### Defined in
 
-types/Format.ts:26
+[types/Format.ts:25](https://github.com/Norviah/logger/blob/8321782/src/types/Format.ts#L25)
 
 ___
 
@@ -48,6 +49,7 @@ ___
 • `Optional` **general**: `string`
 
 Represents the general format for a log.
+
 `%d` is replaced with the date, `%t` is replaced with the title, and `%c`
 replaced with the actual contents for the lag.
 
@@ -74,7 +76,7 @@ being printed within all logs.
 
 #### Defined in
 
-types/Format.ts:74
+[types/Format.ts:72](https://github.com/Norviah/logger/blob/8321782/src/types/Format.ts#L72)
 
 ___
 
@@ -101,4 +103,4 @@ world
 
 #### Defined in
 
-types/Format.ts:46
+[types/Format.ts:44](https://github.com/Norviah/logger/blob/8321782/src/types/Format.ts#L44)
