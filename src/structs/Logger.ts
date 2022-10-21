@@ -280,7 +280,7 @@ export class Logger {
     // First, we'll use the helper method to generate the log if it were to be
     // printed. From the result, we'll remove any ANSI codes as those values
     // aren't necessary when saving the log into a file.
-    const log: string = `${this.generate(content, options).replace(regex.ansi, '')}\n\n`;
+    const log: string = `${this.generate(content, options).replace(regex.ansi, '')}\n`;
 
     // Next, we'll initialize a new `Dayjs` instance to reference the time.
     // Through this reference we'll be able to get the current date to save the
