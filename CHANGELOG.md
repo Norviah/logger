@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.1](https://github.com/norviah/logger/compare/v6.1.0...v6.1.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* don't input an extra new line when saving logs into a file ([024da92](https://github.com/norviah/logger/commit/024da92869295ed413f750b9219ce8ef5092dac2))
+
 ## [6.1.0](https://github.com/norviah/logger/compare/v6.0.0...v6.1.0) (2022-01-10)
 
 
