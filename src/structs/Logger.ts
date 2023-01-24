@@ -396,15 +396,6 @@ export class Logger {
   }
 
   /**
-   * Applies the specified color to the string and prints it to the console.
-   * @param color  The color to apply.
-   * @param string The string to print, with the desired color applied.
-   */
-  public color(color: Color, string: string): void {
-    console.log(this.colorize(color, string));
-  }
-
-  /**
    * Removes all ANSI codes from the provided string.
    *
    * `Logger` uses `chalk` to generate strings with custom colors and types,
