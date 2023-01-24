@@ -168,7 +168,7 @@ export class Logger {
     // As the log consits of special characters to represent colors or
     // formatting, we'll use the Characters method to determine the actual
     // length of the log.
-    const width: number = Logger.Characters(base.replace(regex.log.content, ''));
+    const width: number = Logger.Plain(base.replace(regex.log.content, '')).length;
 
     // For every other given string, we'll place an indent determined by the
     // width of the base of the log.
