@@ -403,48 +403,4 @@ export class Logger {
   public color(color: Color, string: string): void {
     console.log(this.colorize(color, string));
   }
-
-  /**
-   * Finds the amount of characters displayed when printing the provided string
-   * through the `Printer.Print` method.
-   *
-   * When logging contents, markdown syntax such as **bold** or *italics* are
-   * supported, the problem being is that the length of strings are used to
-   * format when printing multi-line logs, however these special syntax are
-   * counted in the length but aren't visible when printed.
-   *
-   * `Logger.Characters` finds the correct length of strings by removing these
-   * special characters.
-   * @param string The string to find the true length of.
-   * @return       The true length of the string, regarding to printing.
-   * @example
-   * ```TypeScript
-   * import { Logger } from '@norviah/logger';
-   *
-   * // We'll initialize a string containing markdown syntax.
-   * const string: string = `__**Hello World!**__`;
-   *
-   * // `Logger` is used to print to the console, if we were to print the string
-   * // using `Logger`, e.g.
-   * new Logger().print(string);
-   * // The string would be printed, embolded and italicised.
-   *
-   * // Which is a problem as we use the string's length when aligning lines
-   * // within the main printing method, the string contains markdown syntax
-   * // which will skew the alignments.
-   *
-   * string.length;              // => 20
-   * Printer.Characters(string); // => 12
-   * ```
-   */
-  public static Characters(string: string): number {
-    // `@norviah/logger` exposes the regular expression it uses when finding
-    // markdown syntax through a string, with these expressions, we'll remove
-    // any found expressions through the string.
-    for (const [, value] of Object.entries(markdown)) {
-      string = string.replace(value.expression, '$1');
-    }
-
-    return string.replace(regex.ansi, '').length;
-  }
 }
