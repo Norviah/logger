@@ -403,4 +403,30 @@ export class Logger {
   public color(color: Color, string: string): void {
     console.log(this.colorize(color, string));
   }
+
+  /**
+   * Removes all ANSI codes from the provided string.
+   *
+   * `Logger` uses `chalk` to generate strings with custom colors and types,
+   * which implements ANSI codes to achieve this. `Plain` can take in a string
+   * generated from `Logger` and remove all ANSI codes from it, resulting in a
+   * plain text version of the string.
+   * @param string The string to remove ANSI codes from.
+   * @returns The string with all ANSI codes removed.
+   * @example
+   * ```ts
+   * let ansiText = "\x1B[34mThis text is blue\x1B[39m";
+   * ```
+   * Here, `ansiText` is a string with the ANSI code for blue color and the
+   * ANSI code for resetting the color. `Plain` can be used to remove these
+   * ANSI codes, resulting in a plain text version of the string.
+   * ```ts
+   * console.log(Plain(ansiText));
+   * ```
+   * While the change isn't noticable here in markdown, the output of the
+   * above code will be `This text is blue` without any ANSI codes.
+   */
+  public static Plain(string: string): string {
+    return string.replace(regex.ansi, '');
+  }
 }
