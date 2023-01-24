@@ -378,20 +378,21 @@ export class Logger {
 
   /**
    * Applies the specified color to the string.
-   * In addition, any markdown syntax specified is also applied.
-   * @param color  The desired color to apply.
+   *
+   * In addition, any markdown syntax specified is also applied to the provided
+   * string.
+   * @param color The desired color to apply.
    * @param string The string to apply the color to.
-   * @return       `string` with the desired color applied.
+   * @returns The string with the desired color applied.
    * @example
-   * ```TypeScript
+   * ```ts
    * import { Logger } from '@norviah/logger';
    *
-   * const logger: Logger = new Logger();
-   * logger.colorize('red', 'hello world');
+   * Logger.Colorize('red', 'hello world');
    * // => <red>hello world</red>
    * ```
    */
-  public colorize(color: Color, string: string): string {
+  public static Colorize(color: Color, string: string): string {
     return format(string, color);
   }
 
