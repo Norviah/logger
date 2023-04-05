@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/norviah/logger/compare/v6.1.1...v7.0.0) (2023-04-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* change method 'colorize' to the static method 'Colorize'
+* remove the 'color' method
+* implement the static 'Plain' method to remove ANSI codes from a string
+* remove the static 'Characters' method
+
+### Features
+
+* change method 'colorize' to the static method 'Colorize' ([17293eb](https://github.com/norviah/logger/commit/17293ebcf9021a9a47a479e41ded022d842fc616))
+* implement the static 'Plain' method to remove ANSI codes from a string ([ce45701](https://github.com/norviah/logger/commit/ce45701fc821b0d3029e5b7bd3e1c87d172e988b))
+
+
+### Bug Fixes
+
+* implement 'Plain' for deprecated 'Characters' method ([9826d7d](https://github.com/norviah/logger/commit/9826d7d8c03e1b93856346a2732ab20295bc8409))
+
+
+### removal
+
+* remove the 'color' method ([8774782](https://github.com/norviah/logger/commit/877478283bb899e137344f1dae9ebff26a475340))
+* remove the static 'Characters' method ([568cf01](https://github.com/norviah/logger/commit/568cf01d7b04228261b488c127eb5a5e131ac9b6))
+
 ### [6.1.1](https://github.com/norviah/logger/compare/v6.1.0...v6.1.1) (2022-10-21)
 
 
