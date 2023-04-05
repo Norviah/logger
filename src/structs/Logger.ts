@@ -12,7 +12,6 @@ import { Options } from '../types/Options';
 
 import { deconstruct } from '../util/deconstruct';
 import { format } from '../util/format';
-import { markdown } from '../util/markdown';
 
 import * as spacetime from 'spacetime';
 import * as defaults from '../util/default';
