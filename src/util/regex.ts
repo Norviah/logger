@@ -1,6 +1,6 @@
 /**
  * Matches any ANSI codes within a string.
- * 
+ *
  * As `Logger` uses `chalk` to apply markdown or color when logging, it does so
  * via ANSI codes. However, when saving logs into a file, those same ANSI codes
  * aren't needed and should be gone, this expression helps remove those any ANSI
