@@ -35,8 +35,6 @@ well, and the desired syntax is applied to the wrapped text.
 
 ### Methods
 
-- [color](Logger.md#color)
-- [colorize](Logger.md#colorize)
 - [error](Logger.md#error)
 - [generate](Logger.md#generate)
 - [info](Logger.md#info)
@@ -44,7 +42,8 @@ well, and the desired syntax is applied to the wrapped text.
 - [success](Logger.md#success)
 - [warn](Logger.md#warn)
 - [write](Logger.md#write)
-- [Characters](Logger.md#characters)
+- [Colorize](Logger.md#colorize)
+- [Plain](Logger.md#plain)
 
 ## Constructors
 
@@ -90,7 +89,7 @@ new Logger({ write: true, });
 
 #### Defined in
 
-[structs/Logger.ts:82](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L82)
+[structs/Logger.ts:81](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L81)
 
 ## Properties
 
@@ -104,67 +103,9 @@ the constructor.
 
 #### Defined in
 
-[structs/Logger.ts:49](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L49)
+[structs/Logger.ts:48](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L48)
 
 ## Methods
-
-### color
-
-▸ **color**(`color`, `string`): `void`
-
-Applies the specified color to the string and prints it to the console.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The color to apply. |
-| `string` | `string` | The string to print, with the desired color applied. |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[structs/Logger.ts:403](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L403)
-
-___
-
-### colorize
-
-▸ **colorize**(`color`, `string`): `string`
-
-Applies the specified color to the string.
-In addition, any markdown syntax specified is also applied.
-
-**`example`**
-```TypeScript
-import { Logger } from '@norviah/logger';
-
-const logger: Logger = new Logger();
-logger.colorize('red', 'hello world');
-// => <red>hello world</red>
-```
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `color` | `Color` | The desired color to apply. |
-| `string` | `string` | The string to apply the color to. |
-
-#### Returns
-
-`string`
-
-`string` with the desired color applied.
-
-#### Defined in
-
-[structs/Logger.ts:394](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L394)
-
-___
 
 ### error
 
@@ -194,7 +135,7 @@ new Logger().error('sample text');
 
 #### Defined in
 
-[structs/Logger.ts:324](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L324)
+[structs/Logger.ts:323](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L323)
 
 ___
 
@@ -256,7 +197,7 @@ A generated string adhering to the desired format of a log.
 
 #### Defined in
 
-[structs/Logger.ts:135](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L135)
+[structs/Logger.ts:134](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L134)
 
 ___
 
@@ -288,7 +229,7 @@ new Logger().info('sample text');
 
 #### Defined in
 
-[structs/Logger.ts:375](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L375)
+[structs/Logger.ts:374](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L374)
 
 ___
 
@@ -342,7 +283,7 @@ The desired syntax is applied to the wrapped strings.
 
 #### Defined in
 
-[structs/Logger.ts:219](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L219)
+[structs/Logger.ts:218](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L218)
 
 ___
 
@@ -374,7 +315,7 @@ new Logger().success('sample text');
 
 #### Defined in
 
-[structs/Logger.ts:341](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L341)
+[structs/Logger.ts:340](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L340)
 
 ___
 
@@ -406,7 +347,7 @@ new Logger().warn('sample text');
 
 #### Defined in
 
-[structs/Logger.ts:358](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L358)
+[structs/Logger.ts:357](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L357)
 
 ___
 
@@ -473,57 +414,82 @@ logger.write('hello world', { name: 'hello world' });
 
 #### Defined in
 
-[structs/Logger.ts:279](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L279)
+[structs/Logger.ts:278](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L278)
 
 ___
 
-### Characters
+### Colorize
 
-▸ `Static` **Characters**(`string`): `number`
+▸ `Static` **Colorize**(`color`, `string`): `string`
 
-Finds the amount of characters displayed when printing the provided string
-through the `Printer.Print` method.
+Applies the specified color to the string.
 
-When logging contents, markdown syntax such as **bold** or *italics* are
-supported, the problem being is that the length of strings are used to
-format when printing multi-line logs, however these special syntax are
-counted in the length but aren't visible when printed.
-
-`Logger.Characters` finds the correct length of strings by removing these
-special characters.
+In addition, any markdown syntax specified is also applied to the provided
+string.
 
 **`example`**
-```TypeScript
+```ts
 import { Logger } from '@norviah/logger';
 
-// We'll initialize a string containing markdown syntax.
-const string: string = `__**Hello World!**__`;
-
-// `Logger` is used to print to the console, if we were to print the string
-// using `Logger`, e.g.
-new Logger().print(string);
-// The string would be printed, embolded and italicised.
-
-// Which is a problem as we use the string's length when aligning lines
-// within the main printing method, the string contains markdown syntax
-// which will skew the alignments.
-
-string.length;              // => 20
-Printer.Characters(string); // => 12
+Logger.Colorize('red', 'hello world');
+// => <red>hello world</red>
 ```
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `string` | `string` | The string to find the true length of. |
+| `color` | `Color` | The desired color to apply. |
+| `string` | `string` | The string to apply the color to. |
 
 #### Returns
 
-`number`
+`string`
 
-The true length of the string, regarding to printing.
+The string with the desired color applied.
 
 #### Defined in
 
-[structs/Logger.ts:440](https://github.com/Norviah/logger/blob/8321782/src/structs/Logger.ts#L440)
+[structs/Logger.ts:394](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L394)
+
+___
+
+### Plain
+
+▸ `Static` **Plain**(`string`): `string`
+
+Removes all ANSI codes from the provided string.
+
+`Logger` uses `chalk` to generate strings with custom colors and types,
+which implements ANSI codes to achieve this. `Plain` can take in a string
+generated from `Logger` and remove all ANSI codes from it, resulting in a
+plain text version of the string.
+
+**`example`**
+```ts
+let ansiText = "\x1B[34mThis text is blue\x1B[39m";
+```
+Here, `ansiText` is a string with the ANSI code for blue color and the
+ANSI code for resetting the color. `Plain` can be used to remove these
+ANSI codes, resulting in a plain text version of the string.
+```ts
+console.log(Plain(ansiText));
+```
+While the change isn't noticable here in markdown, the output of the
+above code will be `This text is blue` without any ANSI codes.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `string` | `string` | The string to remove ANSI codes from. |
+
+#### Returns
+
+`string`
+
+The string with all ANSI codes removed.
+
+#### Defined in
+
+[structs/Logger.ts:420](https://github.com/Norviah/logger/blob/f795ed6/src/structs/Logger.ts#L420)
