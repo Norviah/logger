@@ -41,7 +41,7 @@ As `chalk` is used to output color, the supported colors are from `chalk`.
 
 #### Defined in
 
-[types/Color.ts:7](https://github.com/Norviah/logger/blob/8321782/src/types/Color.ts#L7)
+[types/Color.ts:7](https://github.com/Norviah/logger/blob/f795ed6/src/types/Color.ts#L7)
 
 ___
 
@@ -95,7 +95,7 @@ const employer: DeepPartial<Employer> = {
 
 #### Defined in
 
-[types/DeepPartial.ts:40](https://github.com/Norviah/logger/blob/8321782/src/types/DeepPartial.ts#L40)
+[types/DeepPartial.ts:40](https://github.com/Norviah/logger/blob/f795ed6/src/types/DeepPartial.ts#L40)
 
 ___
 
@@ -153,7 +153,7 @@ const employer: DeepRequired<Employer> = {
 
 #### Defined in
 
-[types/DeepRequired.ts:44](https://github.com/Norviah/logger/blob/8321782/src/types/DeepRequired.ts#L44)
+[types/DeepRequired.ts:44](https://github.com/Norviah/logger/blob/f795ed6/src/types/DeepRequired.ts#L44)
 
 ## Variables
 
@@ -187,7 +187,7 @@ markdown syntax, along with the function from `chalk` to apply.
 
 #### Defined in
 
-[util/markdown.ts:8](https://github.com/Norviah/logger/blob/8321782/src/util/markdown.ts#L8)
+[util/markdown.ts:8](https://github.com/Norviah/logger/blob/f795ed6/src/util/markdown.ts#L8)
 
 ## Functions
 
@@ -284,4 +284,4 @@ A copy of `required` with any values overridden by `partial`.
 
 #### Defined in
 
-[util/deconstruct.ts:76](https://github.com/Norviah/logger/blob/8321782/src/util/deconstruct.ts#L76)
+[util/deconstruct.ts:76](https://github.com/Norviah/logger/blob/f795ed6/src/util/deconstruct.ts#L76)

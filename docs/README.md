@@ -59,7 +59,7 @@ similar to the unix `date` command, and titles are as is, with `%t` replaced wit
 
 #### Color
 
-You can set the color for each section of logs either when initializing a Logger instance of when calling the `print` method. If you
+You can set the color for each section of logs either when initializing a Logger instance or when calling the `print` method. If you
 set colors in the constructor then all logs will be using the specified colors, however if you pass colors in the method directly, then
 that specific log will only consist of the desired color.
 

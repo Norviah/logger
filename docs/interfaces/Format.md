@@ -40,7 +40,7 @@ date: 08/16/2018 :: time: 8:02:18 PM
 
 #### Defined in
 
-[types/Format.ts:25](https://github.com/Norviah/logger/blob/8321782/src/types/Format.ts#L25)
+[types/Format.ts:25](https://github.com/Norviah/logger/blob/f795ed6/src/types/Format.ts#L25)
 
 ___
 
@@ -76,7 +76,7 @@ being printed within all logs.
 
 #### Defined in
 
-[types/Format.ts:72](https://github.com/Norviah/logger/blob/8321782/src/types/Format.ts#L72)
+[types/Format.ts:72](https://github.com/Norviah/logger/blob/f795ed6/src/types/Format.ts#L72)
 
 ___
 
@@ -103,4 +103,4 @@ world
 
 #### Defined in
 
-[types/Format.ts:44](https://github.com/Norviah/logger/blob/8321782/src/types/Format.ts#L44)
+[types/Format.ts:44](https://github.com/Norviah/logger/blob/f795ed6/src/types/Format.ts#L44)
