@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/norviah/logger#readme",
   "devDependencies": {
-    "@norviah/bump": "^1.3.0",
+    "@norviah/bump": "^1.4.1",
     "@tsconfig/node18": "^18.2.2",
     "@types/app-root-path": "^1.2.8",
     "@types/node": "^20.10.4",
