@@ -1,0 +1,74 @@
+{
+  "tasks": {
+    "pre": [
+      {
+        "name": "checking formatting",
+        "command": "pnpm run prettier:check"
+      },
+      {
+        "name": "checking linting",
+        "command": "pnpm run lint:check"
+      },
+      {
+        "name": "building",
+        "command": "pnpm run build:src"
+      }
+    ]
+  },
+  "provider": {
+    "type": "json",
+    "path": "package.json",
+    "key": "version"
+  },
+  "types": [
+    {
+      "type": "feat",
+      "name": "Features"
+    },
+    {
+      "type": "fix",
+      "name": "Bug Fixes"
+    },
+    {
+      "type": "revert",
+      "name": "Reverted"
+    },
+    {
+      "type": "refactor",
+      "name": "Refactor"
+    },
+    {
+      "type": "build",
+      "name": "Build System"
+    },
+    {
+      "type": "init",
+      "name": "Init"
+    },
+    {
+      "type": "remove",
+      "name": "Removed Features"
+    },
+    {
+      "type": "deps",
+      "name": "Dependencies"
+    },
+    {
+      "type": "chore",
+      "hidden": true
+    },
+    {
+      "type": "docs",
+      "hidden": true
+    }
+  ],
+  "prompt": true,
+  "unreleasedHeader": "Unreleased",
+  "breakingHeader": "⚠ Breaking Changes",
+  "includeBody": true,
+  "includeNonConventionalCommits": true,
+  "tag": "v{{after}}",
+  "releaseSubject": "chore(release): {{tag}}",
+  "changelogSubject": "docs(changelog): {{tag}}",
+  "commitOrder": "asc"
+}

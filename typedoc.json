@@ -1,0 +1,14 @@
+{
+  "githubPages": false,
+  "out": "./docs",
+  "readme": "none",
+  "cleanOutputDir": true,
+  "plugin": [
+    "typedoc-plugin-markdown"
+  ],
+  "entryPoints": [
+    "./src/index.ts",
+    "./src/structs/**/*.ts",
+    "./src/utils/**/*.ts"
+  ]
+}

@@ -1,16 +1,20 @@
 {
-  "compileOnSave": true,
+  "extends": "./node_modules/@tsconfig/node18/tsconfig.json",
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
-    "module": "commonJS",
-    "outDir": "lib",
-    "target": "es2020",
-    "moduleResolution": "node",
     "declaration": true,
+    "module": "node16",
+    "outDir": "lib",
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+    "moduleDetection": "force",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }
