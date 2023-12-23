@@ -1,3 +1,9 @@
+## Unreleased
+
+### Init
+
+- initial commit <code>[2833021](https://github.com/Norviah/logger/commit/2833021351cb009d3345bdd345a804327c6d4a90)</code>
+
 ## [v7.0.0](https://github.com/Norviah/logger/compare/v6.1.1...v7.0.0) (2023-04-04)
 
 ### ⚠ Breaking Changes
