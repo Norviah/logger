@@ -2,5 +2,6 @@
   "trailingComma": "es5",
   "parser": "typescript",
   "printWidth": 200,
-  "singleQuote": true
+  "singleQuote": true,
+  "endOfLine": "auto"
 }
