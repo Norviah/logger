@@ -8,12 +8,15 @@
     "lib/**/*"
   ],
   "scripts": {
-    "build:docs": "./node_modules/typedoc/bin/typedoc --options typedoc.json",
-    "build:alias": "./node_modules/tsc-alias/dist/bin/index.js -p tsconfig.json",
-    "build:src": "./node_modules/typescript/bin/tsc && pnpm run build:alias",
-    "build:changelog": "node ./node_modules/@norviah/bump/bin/run changelog generate --config .bumprc.json",
-    "lint": "ndoe ./node_modules/prettier/bin-prettier.js --config .prettierrc.json --write ./src",
-    "exec": "./node_modules/ts-node/dist/bin.js -r tsconfig-paths/register"
+    "build:docs": "typedoc --options typedoc.json",
+    "build:alias": "tsc-alias -p tsconfig.json",
+    "build:src": "tsc && pnpm run build:alias",
+    "build:changelog": "bump changelog generate --config .bumprc.json",
+    "prettier:check": "prettier --config .prettierrc.json ./src",
+    "prettier:fix": "prettier --config .prettierrc.json --write ./src",
+    "eslint": "eslint --config .eslintrc.json ./src",
+    "lint": "pnpm run prettier:check && pnpm run eslint",
+    "exec": "ts-node -r tsconfig-paths/register"
   },
   "repository": {
     "type": "git",
