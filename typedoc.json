@@ -9,6 +9,7 @@
   "entryPoints": [
     "./src/index.ts",
     "./src/structs/**/*.ts",
+    "./src/types/**/*.ts",
     "./src/utils/**/*.ts"
   ]
 }
