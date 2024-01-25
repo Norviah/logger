@@ -18,6 +18,15 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/consistent-indexed-object-style": [ "error", "record" ],
-    "max-len": [ "error", { "comments": 80, "code": 200, "ignoreStrings": true, "ignoreUrls": true }]
+    "max-len": [
+      "error",
+      { 
+        "comments": 80,
+        "code": 200,
+        "ignoreStrings": true,
+        "ignoreUrls": true,
+        "ignorePattern": "^(?=.*\\*).*\/\/.*"
+      }
+    ]
   }
 }
