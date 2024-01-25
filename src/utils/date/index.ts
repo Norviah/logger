@@ -1,6 +1,6 @@
 import * as formatters from './formatter';
 
-const TOKEN_EXPRESSION = /\[([^[\]]|\[[^[\]]*])*]|([A-Za-z])\2+|\.{3}|./g;
+const TOKEN_EXPRESSION = /([A-Za-z])\1+|\.{3}|./g;
 
 /**
  * Tokenizes the provided string to split the string by alphanumeric
